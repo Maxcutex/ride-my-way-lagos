@@ -1,0 +1,105 @@
+<section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+         
+      </div>
+      <!-- search form -->
+      <form id="sidebar_form" action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li  >
+          <a href="/user/dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+           
+          </a>
+          
+        </li>
+        <li  >
+          <a href="/user/courses">
+            <i class="fa fa-list"></i>
+            <span>Courses</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+          
+        </li>
+        <% if student? %>
+         <li  >
+          <a href="/user/mycourses">
+            <i class="fa fa-list"></i>
+            <span>My Enrolled Courses</span>
+            <span class="pull-right-container">
+             
+            </span>
+          </a>
+          
+        </li>
+        <% end %>
+        <% if confirm_instructor %>
+        <li  >
+          <a href="/instructor/mycourses">
+            <i class="fa fa-list"></i>
+            <span>Instructor Courses</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+          
+        </li>
+        <li>
+          <a href="/instructor/managecourses">
+            <i class="fa fa-list"></i>
+            <span>Manage Courses</span>
+            <span class="pull-right-container">
+             
+            </span>
+          </a>
+          
+        </li>
+        <% end %>
+        <% if confirm_admin %>
+         <li>
+          <a href="/admin/managecategories">
+            <i class="fa fa-list-alt"></i>
+            <span>Manage Categories</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+          
+        </li>
+        
+        <li>
+          <a href="/admin/users">
+            <i class="fa fa-users"></i>
+            <span>Manage Users</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+          
+        </li>
+          <li  >
+          <a href="/admin/managefaqs">
+            <i class="fa fa-question-circle"></i>
+            <span>Manage FAQs</span>
+            <span class="pull-right-container">
+               
+            </span>
+          </a>
+          
+        </li>
+        <% end %>
+       </section>
+    
