@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'pg'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,6 +48,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'faker'  
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+
 end
 
 group :development do
