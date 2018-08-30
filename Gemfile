@@ -48,6 +48,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'faker'  
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+
 end
 
 group :development do
