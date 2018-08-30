@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Ride Model
 class Ride < ApplicationRecord
   belongs_to :user
   has_many :followers, dependent: :destroy

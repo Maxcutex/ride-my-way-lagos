@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# User Model
 class User < ApplicationRecord
   belongs_to :role
   has_many :rides, dependent: :destroy
