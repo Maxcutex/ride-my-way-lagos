@@ -1,9 +1,14 @@
-# frozen_string_literal: true
-
-# Role Model
 class Role < ApplicationRecord
-  has_many :users, dependent: :destroy
+has_and_belongs_to_many :users, :join_table => :users_roles
 
-  # validations
-  validates_presence_of :role_name, :role_description
+
+belongs_to :resource,
+           :polymorphic => true
+
+
+validates :resource_type,
+          :inclusion => { :in => Rolify.resource_types },
+          :allow_nil => true
+
+scopify
 end
