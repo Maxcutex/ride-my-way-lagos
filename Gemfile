@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'cancancan'
+gem 'rolify'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -45,6 +47,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rubocop-rspec'
@@ -63,6 +66,7 @@ end
 
 group :test do
    gem 'capybara'
+   gem 'cucumber-rails', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
