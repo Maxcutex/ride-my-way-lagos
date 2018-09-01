@@ -4,13 +4,17 @@ class HomeController < ApplicationController
   def index
   end
 
-  def dashboard
+  def faqs
   end
+
+  def contact
+  end
+
   private
 
   def resolve_layout
     case action_name
-    when "dashboard"
+    when "contact", "faqs"
       "app_layout"
     when "index"
       "app_layout"
