@@ -1,0 +1,55 @@
+
+
+<div id="cp-main-content">
+
+<section class="cp-contact-us-section pd-tb80">
+<div class="container">
+<p id="notice"><%= notice %></p>
+<div class="cp-contact-inner-holder">
+
+
+<div class="cp-form-box cp-form-box2">
+<h3>View Details</h3>
+<form action="http://html.crunchpress.com/taxigo/form.php" method="post">
+<div class="row">
+ <div class="col-md-3 col-sm-6">
+<div class="inner-holder">
+<label>Start Location</label>
+<input type="text" placeholder="start location" name="name" required="" value="<%=@ride.start_location%>" readonly="true">
+</div>
+</div>
+<div class="col-md-3 col-sm-6">
+<div class="inner-holder">
+<label>End Location</label>
+<input type="text" placeholder="end location" name="email" required="" value="<%=@ride.end_location%>" readonly="true">
+</div>
+</div>
+<div class="col-md-3 col-sm-6">
+<div class="inner-holder">
+<label>Date </label>
+<input type="text" placeholder="date" name="subject" required="" value="<%=@ride.date_ride%>" readonly="true">
+</div>
+</div>
+<div class="col-md-3 col-sm-6">
+<div class="inner-holder">
+<label>No of Followers</label>
+<input type="text" placeholder="noriders" name="noriders" required="" value="<%=@ride.rider_count%>" readonly="true">
+</div>
+</div>
+<div class="col-md-12 col-sm-12">
+<div class="inner-holder">
+<textarea placeholder="Message" name="comment" required=""></textarea>
+</div>
+</div>
+<div class="col-md-12 col-sm-12">
+<div class="inner-holder">
+<a href="#" class="btn-submit"  >Go Back</a>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</div>

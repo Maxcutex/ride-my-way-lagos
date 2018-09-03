@@ -8,7 +8,7 @@ FactoryBot.define do
     rider_count { 1 }
     date_ride { '2018-08-29' }
     is_completed { false }
-    user { nil }
+    association :user, factory: :user
     comment { 'MyString' }
   end
 end

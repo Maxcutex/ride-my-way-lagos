@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   root to: "home#index"
   get 'home/index'
   get 'home/faqs'
@@ -8,6 +11,11 @@ Rails.application.routes.draw do
   get 'auth/logout'
   get 'auth/register'
   get 'auth/profile'
+
+  resources :rides do
+    resources :followers
+  end 
+  post 'rides/search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # rails g devise:views
 end
