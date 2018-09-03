@@ -16,53 +16,80 @@ RSpec.describe RidesController, type: :controller do
   }
 
   let(:valid_session) { {} }
-  let(:ride) { FactoryBot.create(:ride) }
+  let!(:ride) { FactoryBot.create(:ride) }
 
-  describe 'GET new' do
-    it 'redirects to login page ' do
-      get :new
-      expect(response).to redirect_to new_user_session_url
+  shared_examples 'public access to rides' do
+    describe 'GET index' do
+      it 'renders :index template' do
+        get :index
+        expect(response).to render_template(:index)
+      end
     end
-  end
 
-  describe 'POST create' do
-    it 'redirects to login page ' do
-      post :create, params: { ride: FactoryBot.attributes_for(:ride) }
-      expect(response).to redirect_to new_user_session_url
+    describe 'GET #index' do
+      it 'returns a success response' do
+        get :index, params: {}, session: valid_session
+        expect(response).to be_successful
+      end
     end
-  end
-  describe 'GET edit' do
-    it 'redirects to login page ' do
-      get :edit, params: { id: FactoryBot.create(:ride).id }
-      expect(response).to redirect_to new_user_session_url
-    end
-  end
-  describe 'GET #index' do
-    it 'returns a success response' do
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #show' do
-    it 'returns a success response' do
-      get :show, params: { id: ride.to_param }, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
   
+    describe 'GET #show' do
+      it 'returns a success response' do
+        get :show, params: { id: ride.to_param }, session: valid_session
+        expect(response).to be_successful
+      end
+    end
 
-  context 'is not the owner for the ride ' do
+    describe 'GET show' do
+      let(:ride) { FactoryBot.create(:ride)}
+
+      it 'renders :show template' do
+        get :show, params: { id: ride.to_param }
+        expect(response).to render_template(:show)
+      end
+
+      it 'assigns requested ride to @ride' do
+        get :show, params: { id: ride.to_param }
+        expect(assigns(:ride)).to eq(ride)
+      end
+    end
   end
 
-  context 'is the owner for the ride ' do
+  describe 'guest user' do
+
+    it_behaves_like 'public access to rides'
+
+    describe 'GET new' do
+      it 'redirects to login page ' do
+        get :new
+        expect(response).to redirect_to new_user_session_url
+      end
+    end
+  
+    describe 'POST create' do
+      it 'redirects to login page ' do
+        post :create, params: { ride: FactoryBot.attributes_for(:ride) }
+        expect(response).to redirect_to new_user_session_url
+      end
+    end
+    describe 'GET edit' do
+      it 'redirects to login page ' do
+        get :edit, params: { id: FactoryBot.create(:ride).id }
+        expect(response).to redirect_to new_user_session_url
+      end
+    end
+  end
+
+  context 'Non owner for the ride ' do
+  end
+
+  context 'The owner for the ride ' do
     before do
       sign_in(user)
     end
 
     let(:user) { FactoryBot.create(:user) }
-    let(:ride) { FactoryBot.create(:ride, user: user)}
+    let!(:ride) { FactoryBot.create(:ride, user: user)}
 
     describe 'GET #new' do
       it 'returns a success response' do
@@ -92,14 +119,19 @@ RSpec.describe RidesController, type: :controller do
     describe 'POST #create' do
       context 'with valid params' do
         it 'creates a new Ride' do
-          # byebug.pry
           expect {
-            post :create, params: { ride: FactoryBot.attributes_for(:ride) }, session: valid_session
+            post :create, params: { ride: FactoryBot.attributes_for_with_foreign_keys(:ride) }, session: valid_session
           }.to change(Ride, :count).by(1)
         end
         it 'redirects to the created ride' do
-          post :create, params: { ride: FactoryBot.attributes_for(:ride) }, session: valid_session
-          expect(response).to redirect_to(Ride.last)
+          post :create, params: { ride: FactoryBot.attributes_for_with_foreign_keys(:ride) }, session: valid_session
+          expect(response).to redirect_to(ride_path(assigns[:ride]))
+
+        end
+        it 'creates new ride in database' do
+          expect {
+            post :create, params: { ride: FactoryBot.attributes_for_with_foreign_keys(:ride) }
+          }.to change(Ride, :count).by(1)
         end
       end
 
@@ -115,8 +147,8 @@ RSpec.describe RidesController, type: :controller do
       context 'with valid params' do
         let(:new_attributes) {
           {
-            'start_location' => 'MyString',
-            'end_location' => 'MyString',
+            'start_location' => 'New Start Location',
+            'end_location' => 'New End Location',
             'is_active' =>  false,
             'rider_count' => 1,
             'date_ride' => '2018-08-29',
@@ -128,7 +160,7 @@ RSpec.describe RidesController, type: :controller do
         it 'updates the requested ride' do
           put :update, params: { id: ride.id, ride: new_attributes }, session: valid_session
           ride.reload
-          skip('Add assertions for updated state')
+          expect(ride.start_location).to eq('New Start Location')
         end
 
         it 'redirects to the ride' do
@@ -139,8 +171,8 @@ RSpec.describe RidesController, type: :controller do
 
       context 'with invalid params' do
         it 'returns a success response (i.e. to display the "edit" template)' do
-          put :update, params: { id: ride.id, ride: invalid_attributes}, session: valid_session
-          expect(response).to be_successful
+          put :update, params: { id: ride.id, ride: FactoryBot.attributes_for(:ride)}, session: valid_session
+          expect(response).to redirect_to ride_path(ride.id)
         end
       end
     end

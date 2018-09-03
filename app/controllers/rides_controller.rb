@@ -47,12 +47,16 @@ class RidesController < ApplicationController
     @ride.date_ride = date2
     @ride.is_active = true
     @ride.is_completed = false
-    @ride.rider_count = params[:rider_count]
+
+     
+
     respond_to do |format|
       if @ride.save
+          
         format.html { redirect_to @ride, notice: 'Ride was successfully created.' }
         format.json { render :show, status: :created, location: @ride }
       else
+         
         format.html { render :new }
         format.json { render json: @ride.errors, status: :unprocessable_entity }
       end
