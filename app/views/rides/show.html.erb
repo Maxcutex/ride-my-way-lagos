@@ -25,27 +25,86 @@
 <input type="text" placeholder="end location" name="email" required="" value="<%=@ride.end_location%>" readonly="true">
 </div>
 </div>
-<div class="col-md-3 col-sm-6">
+<div class="col-md-2 col-sm-6">
 <div class="inner-holder">
 <label>Date </label>
 <input type="text" placeholder="date" name="subject" required="" value="<%=@ride.date_ride%>" readonly="true">
 </div>
 </div>
-<div class="col-md-3 col-sm-6">
+<div class="col-md-2 col-sm-6">
 <div class="inner-holder">
-<label>No of Followers</label>
+<label>No Allowed Followers</label>
 <input type="text" placeholder="noriders" name="noriders" required="" value="<%=@ride.rider_count%>" readonly="true">
 </div>
 </div>
-<div class="col-md-12 col-sm-12">
+
+<div class="col-md-2 col-sm-6">
 <div class="inner-holder">
-<textarea placeholder="Message" name="comment" required=""></textarea>
+<label>Subscribed Followers</label>
+<input type="text" placeholder="noriders" name="noriders" required="" value="<%=@followers.count%>" readonly="true">
 </div>
 </div>
+
+
+
+
 <div class="col-md-12 col-sm-12">
-<div class="inner-holder">
+
+<% if @followers.count > 0 %>
+ <div class="table100 ver3 m-b-110">
+					<table class="custom" data-vertable="ver3"  style="width:100%">
+						<thead>
+							<tr class="row100 head">
+								<th class="column100 column1" data-column="column1">First Name</th>
+								<th class="column100 column2" data-column="column2">Last Name</th>
+								<th class="column100 column3" data-column="column3">Pick Up Location</th>
+								<th class="column100 column4" data-column="column4"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @followers.each do |follower| %>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1"><%= follower.user.first_name%></td>
+								<td class="column100 column2" data-column="column2"><%= follower.user.last_name%></td>
+								<td class="column100 column3" data-column="column3"><%= follower.pick_up_location%></td>
+								
+								<td class="column100 column4" data-column="column4">
+								<% if follower.user.id == current_user.id %>
+									<%=link_to "Remove Me", unsubscribe_path(follower.id) %>
+								<% end %>
+								
+								</td>
+							</tr>
+
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+
+    <% if @ride.user_id != current_user.id %>
+
+    <% end %>
+<% else %>
+<div class="inner-holder">There are no fellow riders on this ride yet!!!</div>
+   <% if @ride.user_id != current_user.id %>
+    <%= link_to "Join Ride", new_ride_follower_path(@ride.id) %>
+   <% end %>
+<% end %>
+</div>
+<div class="col-md-12 col-sm-12">
+<br><br>
+<table>
+<tr>
+<td><div class="inner-holder">
+    <%= link_to "Complete Ride", complete_ride_path(@ride.id),class: "btn-submit"  %> 
+</div>	
+</td>
+<td><div class="inner-holder">
 <a href="#" class="btn-submit"  >Go Back</a>
-</div>
+</div></td>
+</tr>
+</table>
+
 </div>
 </div>
 </form>

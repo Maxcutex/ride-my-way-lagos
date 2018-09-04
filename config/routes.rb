@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/faqs'
   get 'home/contact'
-  get 'auth/login'
-  get 'auth/logout'
-  get 'auth/register'
-  get 'auth/profile'
+  get 'rides/:ride_id/followers/:id/unsubscribe', to:  'followers#unsubscribe', as: 'unsubscribe'
+  get 'rides/:user_id/created', to:  'rides#created_rides', as: 'created_rides'
+  get 'rides/:user_id/subscrided', to:  'rides#subscribed_rides', as: 'subscribed_rides'
+  get 'rides/:ride_id/complete_ride', to:  'rides#complete', as: 'complete_ride'
 
   resources :rides do
     resources :followers

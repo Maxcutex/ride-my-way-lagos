@@ -1,35 +1,38 @@
 class FollowersController < ApplicationController
-  before_action :set_follower, only: [:show, :edit, :update, :destroy]
+  before_action :set_follower, only: [:show, :edit, :update, :destroy, :unsubscribe]
+  before_action :set_ride, only: [:new, :create, :show, :edit, :update, :destroy]
 
-  # GET /followers
-  # GET /followers.json
+  def initialize
+    super
+    @pgheader = 'Ride Management'
+    @breadcrumb = 'Ride Mgt'
+  end
+
   def index
     @followers = Follower.all
   end
 
-  # GET /followers/1
-  # GET /followers/1.json
   def show
   end
 
-  # GET /followers/new
   def new
     @follower = Follower.new
   end
 
-  # GET /followers/1/edit
   def edit
   end
 
-  # POST /followers
-  # POST /followers.json
   def create
+    byebug
+    rider_cannot_follow('create')
     @follower = Follower.new(follower_params)
-
+    @follower.ride_id = @ride.id
+    @follower.user_id = current_user.id
+    @follower.will_ride = true
     respond_to do |format|
       if @follower.save
-        format.html { redirect_to @follower, notice: 'Follower was successfully created.' }
-        format.json { render :show, status: :created, location: @follower }
+        format.html { redirect_to @follower, notice: 'You have successfully subscribed to the ride.' }
+        format.json { render :show, status: :created, location: @ride }
       else
         format.html { render :new }
         format.json { render json: @follower.errors, status: :unprocessable_entity }
@@ -37,13 +40,15 @@ class FollowersController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /followers/1
   # PATCH/PUT /followers/1.json
   def update
+    rider_cannot_follow('update')
     respond_to do |format|
       if @follower.update(follower_params)
-        format.html { redirect_to @follower, notice: 'Follower was successfully updated.' }
-        format.json { render :show, status: :ok, location: @follower }
+        format.html { redirect_to ride_path, notice: 'You have successfully updated your position on the ride..' }
+        format.json { render :show, status: :ok, location: ride_path }
       else
         format.html { render :edit }
         format.json { render json: @follower.errors, status: :unprocessable_entity }
@@ -56,19 +61,53 @@ class FollowersController < ApplicationController
   def destroy
     @follower.destroy
     respond_to do |format|
-      format.html { redirect_to followers_url, notice: 'Follower was successfully destroyed.' }
+      format.html { redirect_to ride_path, notice: 'You have successfully unsubscribed from the ride.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_follower
-      @follower = Follower.find(params[:id], params[:ride_id])
+  def unsubscribe
+    
+    respond_to do |format|
+      #@follower.will_ride = false
+      if @follower.update(will_ride: false)
+        format.html { redirect_to ride_path, notice: 'You have successfully unsubscribed from this ride.' }
+        format.json { render :show, status: :ok, location: ride_path }
+      else
+        format.html { render :edit }
+        format.json { render json: @follower.errors, status: :unprocessable_entity }
+      end
     end
+  end 
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def follower_params
-      params.fetch(:follower, {})
+  private
+
+  def set_follower
+    @follower = Follower.find(params[:id], params[:ride_id])
+  end
+
+  def set_ride
+    @ride = Ride.find(params[:ride_id])
+  end
+
+  def follower_params
+    #params.fetch(:follower, {})
+    params.require(:follower).permit(
+      :ride_id, :will_ride, :user_id, :pick_up_location, :id
+    )
+    
+  end
+
+  def rider_cannot_follow(action)
+    byebug
+    if action == 'create'
+      path = new_ride_follower_path(@ride.id)
+    else
+      path = edit_ride_follower_path(@ride.id)
     end
+    byebug
+    if current_user.id == @ride.user_id
+      format.html { redirect_to path, notice: 'You cannot subscribe to a ride you created' }
+    end
+  end
 end

@@ -28,10 +28,10 @@ user2 = User.create(first_name: 'David', last_name: 'Plate', username: 'nili6782
 Ride.destroy_all
 
 Ride.create(
-  start_location: 'ET', end_location: 'home', is_active: true, rider_count: 0,
+  start_location: 'ET', end_location: 'home', is_active: true, rider_count: 6,
   date_ride: DateTime.now, is_completed: false, user_id: user1.id
 )
 Ride.create(
-  start_location: 'home', end_location: 'ET', is_active: true, rider_count: 0,
-  date_ride: DateTime.now, is_completed: false, user_id: user2.id
+  start_location: 'home', end_location: 'ET', is_active: true, rider_count: 5,
+  date_ride: DateTime.now, is_completed: false, user_id: user1.id
 )

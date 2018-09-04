@@ -10,8 +10,6 @@ class RidesController < ApplicationController
     @breadcrumb = 'Ride Mgt'
   end
 
-  # GET /rides
-  # GET /rides.json
   def index
     @rides = Ride.all
   end
@@ -21,22 +19,29 @@ class RidesController < ApplicationController
     @rides = Ride.where('start_location LIKE ? or end_location LIKE ?', "%#{search_value}%", "%#{search_value}%").all
   end
 
-  # GET /rides/1
-  # GET /rides/1.json
   def show
   end
 
-  # GET /rides/new
   def new
     @ride = Ride.new
   end
 
-  # GET /rides/1/edit
   def edit
   end
 
-  # POST /rides
-  # POST /rides.json
+  def created_rides
+    @rides = Ride.where(user_id: params[:user_id])
+  end
+
+  def subscribed_rides
+    @subscribed = Followers.get_by_user_id(current_user.id).all.map do |user_enroll|
+      user_enroll.ride_id if user_enroll.user_id == current_user.id
+    end
+    @user_rides = @subscribed.compact.map do |_id|
+      Ride.find_by_id(course_id)
+    end
+  end 
+
   def create
     if params[:year].nil?
       date2 = DateTime.now
@@ -63,8 +68,6 @@ class RidesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rides/1
-  # PATCH/PUT /rides/1.json
   def update
     respond_to do |format|
       if @ride.update(ride_params)
@@ -77,8 +80,6 @@ class RidesController < ApplicationController
     end
   end
 
-  # DELETE /rides/1
-  # DELETE /rides/1.json
   def destroy
     @ride.destroy
     respond_to do |format|
@@ -87,29 +88,41 @@ class RidesController < ApplicationController
     end
   end
 
+  def complete_ride
+    respond_to do |format|
+      rp = ride_params
+      rp.is_completed = true
+      if @ride.update(rp)
+        format.html { redirect_to @ride, notice: 'Ride was successfully completed.' }
+        format.json { render :show, status: :ok, location: @ride }
+      else
+        format.html { render :edit }
+        format.json { render json: @ride.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
-    def set_header
-      render locals: { page_header: @page_header }
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ride
-      @ride = Ride.find(params[:id])
-    end
 
-    def set_followers
-      @followers = Follower.where(ride_id: params[:id])
-    end
+  def set_header
+    render locals: { page_header: @page_header }
+  end
+  def set_ride
+    @ride = Ride.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ride_params
-      # params.fetch(:ride, {})
-      params.require(:ride).permit(
-        :start_location, :end_location, :date_ride, :rider_count,
-        :is_active, :is_completed, :comment, :user_id
-      )
-    end
+  def set_followers
+    @followers = Follower.where(ride_id: params[:id], will_ride: true)
+  end
 
-    def followers_params
-      params.fetch(:follower, {})
-    end
+  def ride_params
+    params.require(:ride).permit(
+      :start_location, :end_location, :date_ride, :rider_count,
+      :is_active, :is_completed, :comment, :user_id
+    )
+  end
+
+  def followers_params
+    params.fetch(:follower, {})
+  end
 end

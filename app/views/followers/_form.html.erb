@@ -10,8 +10,12 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="inner-holder">
+  <label>Your Pick Up Location</label>
+   <%= form.text_field :pick_up_location, placeholder: 'Pick Up Location', autofocus: true, autocomplete: "pick_up_location", required: true  %>
+  <br><br><p>Enter your pick up location else leave blank and submit</p>
+  </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Subscribe", class: "submit" %>
   </div>
 <% end %>
