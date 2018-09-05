@@ -8,39 +8,42 @@
 <div class="cp-faq-holder">
 <h3>RIDES</h3>
 <p id="notice"><%= notice %></p>
-
-<table class="dataTable" id="RideResult">
+ <div class="table100 ver3 m-b-110">
+<table class="custom" data-vertable="ver3"  style="width:100%">
   <thead>
-    <tr>
-    <th>Start Location</th>
-    <th>End Location</th>
-    <th>Date/Time Movement</th>
-    <th>Followers</th>
-    <th>Free Space<th>
-    <th colspan="3"></th>
+    <tr class="row100 head">
+    <th class="column100 column1" data-column="column1">Start Location</th>
+    <th class="column100 column2" data-column="column2">End Location</th>
+    <th class="column100 column3" data-column="column3">Date/Time Movement</th>
+    <th class="column100 column4" data-column="column4">Followers</th>
+    <th class="column100 column5" data-column="column5">Free Space<th>
+    <th class="column100 column6" data-column="column6"></th>
+    <th class="column100 column7" data-column="column7"></th>
+    <th class="column100 column8" data-column="column8"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @rides.each do |ride| %>
-      <tr>
-       <td><%=ride.start_location%></td>
-       <td><%=ride.end_location%></td>
-       <td><%=ride.date_ride%></td>
-       <td><%=ride.rider_count%></td>
-       <td><%=%><td>
-        <td><%= link_to 'View Details', ride %></td>
+      <tr class="row100">
+       <td class="column100 column1" data-column="column1"><%=ride.start_location%></td>
+       <td class="column100 column2" data-column="column2"><%=ride.end_location%></td>
+       <td class="column100 column3" data-column="column3"><%=ride.date_ride%></td>
+       <td class="column100 column4" data-column="column4"><%=ride.rider_count%></td>
+       <td class="column100 column5" data-column="column5"><%=%><td>
+        <td class="column100 column6" data-column="column6"><%= link_to 'View Details', ride %></td>
         <% if user_signed_in? && ride.user_id == current_user.id %>
-        <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
-        <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="column100 column7" data-column="column7"><%= link_to 'Edit', edit_ride_path(ride) %></td>
+        <td class="column100 column8" data-column="column8"><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% else %>
-        <td colspan="2">
+        <td class="column100 column7" data-column="column7" ></td>
+        <td class="column100 column8" data-column="column8" ></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 </div>

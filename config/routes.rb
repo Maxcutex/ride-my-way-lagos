@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get 'home/contact'
   get 'rides/:ride_id/followers/:id/unsubscribe', to:  'followers#unsubscribe', as: 'unsubscribe'
   get 'rides/:user_id/created', to:  'rides#created_rides', as: 'created_rides'
-  get 'rides/:user_id/subscrided', to:  'rides#subscribed_rides', as: 'subscribed_rides'
+  get 'rides/:user_id/subscribed', to:  'rides#subscribed_rides', as: 'subscribed_rides'
   get 'rides/:ride_id/complete_ride', to:  'rides#complete', as: 'complete_ride'
+  get 'rides/find', to:  'rides#find', as: 'find_ride'
 
   resources :rides do
     resources :followers

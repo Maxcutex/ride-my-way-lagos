@@ -15,8 +15,7 @@ class RidesController < ApplicationController
   end
 
   def search
-    search_value = params[:search_value]
-    @rides = Ride.where('start_location LIKE ? or end_location LIKE ?', "%#{search_value}%", "%#{search_value}%").all
+    @rides = Ride.search_by(params[:search_value],params[:option])
   end
 
   def show
@@ -26,20 +25,18 @@ class RidesController < ApplicationController
     @ride = Ride.new
   end
 
+  def find
+  end
+
   def edit
   end
 
   def created_rides
-    @rides = Ride.where(user_id: params[:user_id])
+    @rides = Ride.created_by(params[:user_id])
   end
 
   def subscribed_rides
-    @subscribed = Followers.get_by_user_id(current_user.id).all.map do |user_enroll|
-      user_enroll.ride_id if user_enroll.user_id == current_user.id
-    end
-    @user_rides = @subscribed.compact.map do |_id|
-      Ride.find_by_id(course_id)
-    end
+    @rides = Ride.subscribed_by(params[:user_id])
   end 
 
   def create
@@ -52,9 +49,6 @@ class RidesController < ApplicationController
     @ride.date_ride = date2
     @ride.is_active = true
     @ride.is_completed = false
-
-     
-
     respond_to do |format|
       if @ride.save
           
@@ -112,7 +106,7 @@ class RidesController < ApplicationController
   end
 
   def set_followers
-    @followers = Follower.where(ride_id: params[:id], will_ride: true)
+    @followers = Follower.get_by_ride_id(params[:id])
   end
 
   def ride_params

@@ -96,11 +96,13 @@
 <table>
 <tr>
 <td><div class="inner-holder">
+<% if @ride.user_id == current_user.id %>
     <%= link_to "Complete Ride", complete_ride_path(@ride.id),class: "btn-submit"  %> 
+<% end %>
 </div>	
 </td>
 <td><div class="inner-holder">
-<a href="#" class="btn-submit"  >Go Back</a>
+<a href="/rides" class="btn-submit"  >Go Back</a>
 </div></td>
 </tr>
 </table>
