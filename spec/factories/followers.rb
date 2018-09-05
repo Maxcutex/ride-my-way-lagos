@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :follower do
-    will_ride { false }
-    ride { nil }
-    user { nil }
+    will_ride { true }
+    association :user, factory: :user
+    association :ride, factory: :ride
     pick_up_location { 'My String' }
   end
 end

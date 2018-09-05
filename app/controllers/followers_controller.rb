@@ -8,9 +8,6 @@ class FollowersController < ApplicationController
     @breadcrumb = 'Ride Mgt'
   end
 
-  def index
-    @followers = Follower.all
-  end
 
   def show
   end
@@ -23,7 +20,7 @@ class FollowersController < ApplicationController
   end
 
   def create
-    byebug
+    
     rider_cannot_follow('create')
     @follower = Follower.new(follower_params)
     @follower.ride_id = @ride.id
@@ -99,13 +96,13 @@ class FollowersController < ApplicationController
   end
 
   def rider_cannot_follow(action)
-    byebug
+    
     if action == 'create'
       path = new_ride_follower_path(@ride.id)
     else
       path = edit_ride_follower_path(@ride.id)
     end
-    byebug
+    
     if current_user.id == @ride.user_id
       format.html { redirect_to path, notice: 'You cannot subscribe to a ride you created' }
     end

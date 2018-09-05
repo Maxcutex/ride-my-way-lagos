@@ -40,9 +40,9 @@ RSpec.describe FollowersController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # FollowersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-  let(:role) { FactoryBot.create(:role, name: "user") }
-  let(:user) { FactoryBot.create(:user) }
-  let(:ride) { FactoryBot.create(:ride, user_id: user.id) }
+  let(:role) { create(:role, name: "user") }
+  let(:user) { create(:user) }
+  let(:ride) { create(:ride, user_id: user.id) }
 
   describe "GET #index" do
     it "returns a success response" do

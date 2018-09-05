@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe RidesController, type: :controller do
-  let(:user) { FactoryBot.create(:user)}
+  
+  let(:user) { create(:user)}
   let(:valid_attributes) {
     FactoryBot.attributes_for(:ride)
   }
@@ -16,7 +17,7 @@ RSpec.describe RidesController, type: :controller do
   }
 
   let(:valid_session) { {} }
-  let!(:ride) { FactoryBot.create(:ride) }
+  let!(:ride) { create(:ride) }
 
   shared_examples 'public access to rides' do
     describe 'GET index' do
@@ -41,7 +42,7 @@ RSpec.describe RidesController, type: :controller do
     end
 
     describe 'GET show' do
-      let(:ride) { FactoryBot.create(:ride)}
+      let(:ride) { create(:ride)}
 
       it 'renders :show template' do
         get :show, params: { id: ride.to_param }
@@ -74,7 +75,7 @@ RSpec.describe RidesController, type: :controller do
     end
     describe 'GET edit' do
       it 'redirects to login page ' do
-        get :edit, params: { id: FactoryBot.create(:ride).id }
+        get :edit, params: { id: create(:ride).id }
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -88,8 +89,8 @@ RSpec.describe RidesController, type: :controller do
       sign_in(user)
     end
 
-    let(:user) { FactoryBot.create(:user) }
-    let!(:ride) { FactoryBot.create(:ride, user: user)}
+    let(:user) { create(:user) }
+    let!(:ride) { create(:ride, user: user)}
 
     describe 'GET #new' do
       it 'returns a success response' do

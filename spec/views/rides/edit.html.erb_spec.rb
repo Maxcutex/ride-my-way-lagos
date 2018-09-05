@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "rides/edit", type: :view do
-  let(:user) { FactoryBot.create(:user)}
+  let(:user) { create(:user)}
   before(:each) do
-    @ride = FactoryBot.create(:ride, user_id: user.id)
+    @ride = create(:ride, user: user)
   end
 
   it "renders the edit ride form" do
+    
     render
 
-    assert_select "form[action=?][method=?]", edit_ride_path(@ride), "post" do
+    assert_select "form[action=?][method=?]", "/rides/#{@ride.id}", "POST" do
     end
   end
 end

@@ -41,7 +41,7 @@
 <div class="col-md-2 col-sm-6">
 <div class="inner-holder">
 <label>Subscribed Followers</label>
-<input type="text" placeholder="noriders" name="noriders" required="" value="<%=@followers.count%>" readonly="true">
+<input type="text" placeholder="noriders" name="noriders" required="" value="<%=@ride.followers.count%>" readonly="true">
 </div>
 </div>
 
@@ -50,7 +50,7 @@
 
 <div class="col-md-12 col-sm-12">
 
-<% if @followers.count > 0 %>
+<% if @ride.followers.count > 0 %>
  <div class="table100 ver3 m-b-110">
 					<table class="custom" data-vertable="ver3"  style="width:100%">
 						<thead>
@@ -62,7 +62,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% @followers.each do |follower| %>
+							<% @ride.followers.each do |follower| %>
 							<tr class="row100">
 								<td class="column100 column1" data-column="column1"><%= follower.user.first_name%></td>
 								<td class="column100 column2" data-column="column2"><%= follower.user.last_name%></td>
@@ -70,7 +70,7 @@
 								
 								<td class="column100 column4" data-column="column4">
 								<% if follower.user.id == current_user.id %>
-									<%=link_to "Remove Me", unsubscribe_path(follower.id) %>
+									<%=link_to "Remove Me", unsubscribe_path(id: follower.id, ride_id: @ride.id) %>
 								<% end %>
 								
 								</td>
