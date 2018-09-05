@@ -9,9 +9,10 @@ FactoryBot.define do
     first_name { 'MyString' }
     last_name { 'MyString' }
     email
-    is_active { false }
+    is_active { true }
     username
     password { 'MyString' }
     password_confirmation { 'MyString' }
+    phone_number { "asdfasdf"}
   end
 end

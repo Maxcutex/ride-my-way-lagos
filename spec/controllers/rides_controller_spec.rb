@@ -119,6 +119,8 @@ RSpec.describe RidesController, type: :controller do
     describe 'POST #create' do
       context 'with valid params' do
         it 'creates a new Ride' do
+          ride_atr = FactoryBot.attributes_for_with_foreign_keys(:ride) 
+          expect { Ride.create(ride_atr) }.to change{ Ride.count }.by(1)
           expect {
             post :create, params: { ride: FactoryBot.attributes_for_with_foreign_keys(:ride) }, session: valid_session
           }.to change(Ride, :count).by(1)

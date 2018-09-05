@@ -1,4 +1,4 @@
-<%= form_with(model: follower, local: true,url: edit_ride_follower_path) do |form| %>
+<%= form_with(model: follower, local: true,url: edit_ride_follower_path(id: follower.id, ride_id: @ride.id)) do |form| %>
   <% if follower.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(follower.errors.count, "error") %> prohibited this follower from being saved:</h2>
@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+<div class="inner-holder">
+  <label>Your Pick Up Location</label>
+   <%= form.text_field :pick_up_location, placeholder: 'Pick Up Location', autofocus: true, autocomplete: "pick_up_location", required: true, value: follower.pick_up_location  %>
+  <br><br><p>Enter your pick up location else leave blank and submit</p>
+ <%= form.hidden_field :ride_id, required: true, value: @ride.id  %>
+
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

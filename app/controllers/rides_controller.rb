@@ -49,6 +49,8 @@ class RidesController < ApplicationController
     @ride.date_ride = date2
     @ride.is_active = true
     @ride.is_completed = false
+    @ride.user_id = current_user.id
+    #@ride.rider_count = params[:rider_count]
     respond_to do |format|
       if @ride.save
           

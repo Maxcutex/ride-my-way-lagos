@@ -21,4 +21,6 @@ class Follower < ApplicationRecord
   def self.get_by_id_ride_id(id, ride_id)
     where(id: id, ride_id: ride_id).first
   end
+  validates :will_ride,:ride_id, :user_id, presence: true
+
 end
