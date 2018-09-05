@@ -24,3 +24,14 @@ user2 = User.create(first_name: 'David', last_name: 'Plate', username: 'nili6782
   password: 'iesha2', password_confirmation: 'iesha2', is_active: true,
   created_at: DateTime.now, updated_at: DateTime.now)
 #user2.add_role(:user)
+
+Ride.destroy_all
+
+Ride.create(
+  start_location: 'ET', end_location: 'home', is_active: true, rider_count: 6,
+  date_ride: DateTime.now, is_completed: false, user_id: user1.id
+)
+Ride.create(
+  start_location: 'home', end_location: 'ET', is_active: true, rider_count: 5,
+  date_ride: DateTime.now, is_completed: false, user_id: user1.id
+)

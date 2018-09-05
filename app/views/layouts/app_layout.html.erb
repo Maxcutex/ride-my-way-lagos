@@ -20,8 +20,17 @@
 <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
 
 <link rel="stylesheet" href="/css/icomoon.css" type="text/css">
+<link rel="stylesheet" href="/css/table.css" type="text/css">
 
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,600,700,900,800,200,100,500,400italic' rel='stylesheet' type='text/css'>
+
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/table.js"></script>
+<script src="/js/dataTables.bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -42,16 +51,25 @@
 <%= link_to "Register", new_user_registration_path %>
 </li>
 <% if user_signed_in? %>
-<li> <%= link_to "View My Rides", root_path %></li>
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rides <i class="fa fa-angle-down"></i></a>
+<ul class="dropdown-menu" role="menu">
+<li><%= link_to "View Created Rides", created_rides_path(current_user.id) %></li>
+<li><%= link_to "View Subscribed Rides", subscribed_rides_path(current_user.id) %></li>
+<li><%= link_to "Create Ride", new_ride_path %></li>
+<li><%= link_to "Search For Ride", find_ride_path %></li>
+
+</ul>
+</li>
 <% end %>
 
 </ul>
 </div>
 <div id="cp-slide-search" class="cp_side-search">
-<form method="get">
-<input type="text" placeholder="Enter Your Name..." required>
+<%= form_for :rides, url: "/rides/search", :remote => true, :authenticity_token => true, :html => {  :id => 'form_search' } do |s| %>
+<input type="text" placeholder="Enter Location To Search..." required name="search_value">
+<input type="hidden"  required name="option" value="both">
 <button type="submit"><i class="fa fa-search"></i></button>
-</form>
+<% end %>
 </div>
 
 <div class="cp-navigation-row">
@@ -63,11 +81,15 @@
 <ul class="top-listed">
 <% if user_signed_in? %>
 <li> <%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-<li> <%= link_to "My Profile", auth_profile_path %></li>
+<li> <%= link_to "My Profile", edit_user_registration_path %></li>
 
 <% else %>
-<li> <%= link_to "Log In", new_user_registration_path %></li>
-<li> <%= link_to "Register", new_user_session_path %></li>
+<li>
+<%= link_to "Login", new_user_session_path %>
+</li>
+<li>
+<%= link_to "Register", new_user_registration_path %>
+</li>
 
 <% end %>
 
@@ -81,7 +103,7 @@
 <div class="col-md-3 col-sm-12 col-xs-6">
 
  <strong class="cp-logo">
-<a href="index.html"><img src="/images/cp-logo.png" alt=""></a>
+<a href="/"><img src="/images/cp-logo.png" alt=""></a>
 </strong>
 </div>
 <div class="col-md-9 col-sm-12 col-xs-6">
@@ -91,7 +113,15 @@
 <li> <%= link_to "Home", root_path %></li>
 <li> <%= link_to "FAQs", home_faqs_path %></li>
 <% if user_signed_in? %>
-<li> <%= link_to "View My Rides", root_path %></li>
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rides <i class="fa fa-angle-down"></i></a>
+<ul class="dropdown-menu" role="menu">
+<li><%= link_to "View Created Rides", created_rides_path(current_user.id) %></li>
+<li><%= link_to "View Subscribed Rides", subscribed_rides_path(current_user.id) %></li>
+<li><%= link_to "Create Ride", new_ride_path %></li>
+<li><%= link_to "Search For Ride", find_ride_path %></li>
+
+</ul>
+</li>
 <% end %>
 <li> <%= link_to "Contact", home_contact_path %></li>
 <li>
@@ -1007,7 +1037,7 @@ One Way Rental and how much they cost?
 <div class="col-md-6 col-sm-12">
 <div class="footer-about-box">
 <strong class="logo">
-<a href="index.html"><img src="/images/cp-logo2.png" alt=""></a>
+<a href="/"><img src="/images/cp-logo2.png" alt=""></a>
 </strong>
 <p>The Company downminor offences are fine and will not incur any additional fee's. Any other offences should be checked with our reservations urna nibh ut, our reservations alias consequatur aut perferendis doloribus asurna etiam libero nisl, in magna feugia.</p>
 <ul class="cp-social-links">
@@ -1076,7 +1106,6 @@ One Way Rental and how much they cost?
 </footer>
 </div>
  
-<script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 

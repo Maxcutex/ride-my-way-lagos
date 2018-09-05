@@ -1,0 +1,41 @@
+<div id="cp-main-content">
+
+<section class="cp-reservation-section pd-tb80">
+<div class="container">
+<div class="cp-heading-style1">
+<h2> <span>Look For A Ride</span></h2>
+</div>
+
+<div class="cp-reservation-box cp-login-box">
+<h3>Search Form</h3>
+<%=form_tag({controller: "rides", action: "search"}, method: "post", class: "nifty_form")  do |form| %>
+ 
+<div class="inner-holder">
+<label> Location</label>
+<input type="text" placeholder="Enter Location To Search..." required name="search_value">
+
+</div>
+
+<div class="inner-holder">
+<select name="option">
+<option value="start" >Start Location</option>
+<option value="end" >End Location</option>
+<option value="both" >Both</option>
+
+</select>
+</div>
+
+
+  <div class="inner-holder">
+   <button type="submit" class="submit" value="Submit">Search Ride</button>
+  </div>
+<% end %>
+
+
+
+
+<%= link_to 'Back', rides_path %>
+</div>
+</div>
+</section>
+</div>
