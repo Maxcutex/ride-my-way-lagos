@@ -5,7 +5,7 @@ RSpec.describe "followers/edit", type: :view do
 
   before(:each) do
     @ride = create(:ride, user_id: user.id)
-    @follower = assign(:follower, Follower.create!(:ride_id => @ride.id,:user_id => user.id))
+    @follower = assign(:follower, Follower.create!(:ride_id => @ride.id,:user_id => user.id, :will_ride => true))
   end
 
   it "renders the edit follower form" do

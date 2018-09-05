@@ -15,6 +15,7 @@
    <%= form.text_field :pick_up_location, placeholder: 'Pick Up Location', autofocus: true, autocomplete: "pick_up_location", required: true  %>
   <br><br><p>Enter your pick up location else leave blank and submit</p>
  <%= form.hidden_field :ride_id, required: true, value: @ride.id  %>
+ <%= form.hidden_field :user_id, required: true, value: current_user.id  %>
 
   </div>
   <div class="actions">

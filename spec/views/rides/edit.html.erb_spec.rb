@@ -9,8 +9,10 @@ RSpec.describe "rides/edit", type: :view do
   it "renders the edit ride form" do
     
     render
+    assert_select "form input" do
+      assert_select "[name=?]", "ride[start_location]"  
 
-    assert_select "form[action=?][method=?]", "/rides/#{@ride.id}", "POST" do
     end
+
   end
 end

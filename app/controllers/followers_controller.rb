@@ -1,6 +1,8 @@
 class FollowersController < ApplicationController
   before_action :set_follower, only: [:show, :edit, :update, :destroy, :unsubscribe]
   before_action :set_ride, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
+
 
   def initialize
     super
@@ -23,15 +25,14 @@ class FollowersController < ApplicationController
     
     rider_cannot_follow('create')
     @follower = Follower.new(follower_params)
-    @follower.ride_id = @ride.id
-    @follower.user_id = current_user.id
+     
     @follower.will_ride = true
     respond_to do |format|
       if @follower.save
-        format.html { redirect_to @follower, notice: 'You have successfully subscribed to the ride.' }
+        format.html { redirect_to ride_path(id: @ride.id), notice: 'You have successfully subscribed to the ride.' }
         format.json { render :show, status: :created, location: @ride }
       else
-        format.html { render :new }
+        format.html { redirect_to new_ride_path }
         format.json { render json: @follower.errors, status: :unprocessable_entity }
       end
     end
@@ -58,7 +59,7 @@ class FollowersController < ApplicationController
   def destroy
     @follower.destroy
     respond_to do |format|
-      format.html { redirect_to ride_path, notice: 'You have successfully unsubscribed from the ride.' }
+      format.html { redirect_to ride_path(id: @ride.id), notice: 'You have successfully unsubscribed from the ride.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +69,7 @@ class FollowersController < ApplicationController
     respond_to do |format|
       #@follower.will_ride = false
       if @follower.update(will_ride: false)
-        format.html { redirect_to ride_path, notice: 'You have successfully unsubscribed from this ride.' }
+        format.html { redirect_to ride_path(id: @ride.id), notice: 'You have successfully unsubscribed from this ride.' }
         format.json { render :show, status: :ok, location: ride_path }
       else
         format.html { render :edit }

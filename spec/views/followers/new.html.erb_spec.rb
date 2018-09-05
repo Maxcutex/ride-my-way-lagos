@@ -6,8 +6,8 @@ RSpec.describe "followers/new", type: :view do
   before(:each) do
     @ride =  create(:ride, user: user)
     assign(:follower, Follower.new())
+    sign_in(user)
   end
-
   it "renders new follower form" do
     render
 
