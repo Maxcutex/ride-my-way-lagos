@@ -11,9 +11,12 @@ class Ride < ApplicationRecord
   def self.get_by_id(id)
     where(id: id, is_active: true).first
   end
+  def self.find_by_id(id)
+    where(id: id).first
+  end
   
   def self.created_by(user_id)
-    where(user_id: user_id)
+    where(user_id: user_id, is_active: true)
   end
 
   def self.subscribed_by(user_id)

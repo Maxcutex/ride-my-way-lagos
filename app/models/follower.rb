@@ -18,6 +18,8 @@ class Follower < ApplicationRecord
     where(ride_id: id, will_ride: true)
   end
 
+  
+
   def self.get_by_id_ride_id(id, ride_id)
     where(id: id, ride_id: ride_id).first
   end

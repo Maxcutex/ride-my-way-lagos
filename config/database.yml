@@ -5,27 +5,41 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  # adapter: sqlite3
+  adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  encoding: unicode
+  host: localhost
 
 development:
   # <<: *default
   # database: db/development.sqlite3
-  <<: *default
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
+  # <<: *default
+  # DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_dev
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  database: <%= ENV['DATABASE_NAME'] || 'ride_my_way_dev' %>
+  username: <%= ENV['DATABASE_USER'] || 'rideadmin' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'ridepass' %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   # <<: *default
   # database: db/test.sqlite3
-  <<: *default
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
+  # <<: *default
+  # DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_test
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  database: <%= ENV['DATABASE_NAME'] || 'ride_my_way_test' %>
+  username: <%= ENV['DATABASE_USER'] || 'rideadmin' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'ridepass' %>
 
 production:
   # <<: *default
   # database: db/production.sqlite3
   <<: *default
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
+  DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_live
