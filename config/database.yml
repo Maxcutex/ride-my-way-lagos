@@ -15,14 +15,28 @@ default: &default
 development:
   # <<: *default
   # database: db/development.sqlite3
-  <<: *default
-  DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_dev
+  # <<: *default
+  # DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_dev
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  database: <%= ENV['DATABASE_NAME'] || 'ride_my_way_dev' %>
+  username: <%= ENV['DATABASE_USER'] || 'rideadmin' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'ridepass' %>
 
 test:
   # <<: *default
   # database: db/test.sqlite3
-  <<: *default
-  DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_test
+  # <<: *default
+  # DATABASE_URL: postgresql://postgres:@127.0.0.1:5432/ride_my_way_test
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  database: <%= ENV['DATABASE_NAME'] || 'ride_my_way_test' %>
+  username: <%= ENV['DATABASE_USER'] || 'rideadmin' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'ridepass' %>
 
 production:
   # <<: *default

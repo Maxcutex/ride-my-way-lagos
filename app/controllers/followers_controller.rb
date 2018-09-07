@@ -45,8 +45,8 @@ class FollowersController < ApplicationController
     rider_cannot_follow('update')
     respond_to do |format|
       if @follower.update(follower_params)
-        format.html { redirect_to ride_path, notice: 'You have successfully updated your position on the ride..' }
-        format.json { render :show, status: :ok, location: ride_path }
+        format.html { redirect_to ride_path(id: @ride.id) , notice: 'You have successfully updated your position on the ride..' }
+        format.json { render :show, status: :ok, location: ride_path(id: @ride.id) }
       else
         format.html { render :edit }
         format.json { render json: @follower.errors, status: :unprocessable_entity }
@@ -81,11 +81,11 @@ class FollowersController < ApplicationController
   private
 
   def set_follower
-    @follower = Follower.find(params[:id], params[:ride_id])
+    @follower = Follower.get_by_id_ride_id(params[:id], params[:ride_id])
   end
 
   def set_ride
-    @ride = Ride.find(params[:ride_id])
+    @ride = Ride.find_by_id(params[:ride_id])
   end
 
   def follower_params

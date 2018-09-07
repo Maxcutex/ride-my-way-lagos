@@ -31,7 +31,7 @@ RSpec.describe FollowersController, type: :controller do
   let(:user) { FactoryBot.create(:user)}
   let(:user1) { FactoryBot.create(:user)}
   let(:ride) { FactoryBot.create(:ride, user: user)}
-  let(:follower) { FactoryBot.create(:follower, ride: ride, user: user1)}
+  let!(:follower) { FactoryBot.create(:follower, ride: ride, user: user1)}
   let(:valid_attributes) {
     FactoryBot.attributes_for_with_foreign_keys(:follower)
   }
@@ -106,13 +106,14 @@ RSpec.describe FollowersController, type: :controller do
     end
   
     describe "DELETE #destroy" do
-      # it "destroys the requested follower" do
-      #   expect {
-      #     delete :destroy, params: {id: follower.to_param, ride_id: ride.id}, session: valid_session
-      #   }.to change(Follower, :count).by(-1)
-      # end
+      it "destroys the requested follower" do
+        expect {
+          delete :destroy, params: {id: follower.to_param, ride_id: ride.id}, session: valid_session
+        }.to change(Follower, :count).by(-1)
+      end
   
       it "redirects to the followers list" do
+        
         delete :destroy, params: {id: follower.to_param, ride_id: ride.id}, session: valid_session
         expect(response).to redirect_to(ride_path(id: ride.id))
       end
