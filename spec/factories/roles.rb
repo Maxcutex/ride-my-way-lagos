@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :role do
-    role_name { 'MyString' }
-    role_description { 'MyString' }
+    name { "Admin" }
   end
 end

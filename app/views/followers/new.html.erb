@@ -1,0 +1,21 @@
+
+<div id="cp-main-content">
+
+<section class="cp-reservation-section pd-tb80">
+<div class="container">
+<div class="cp-heading-style1">
+<h2> <span>Join Ride</span></h2>
+</div>
+
+<div class="cp-reservation-box cp-login-box">
+<h3>Ride Details</h3>
+<div class="inner-holder" style="text-align: left">
+<strong>Start Location : </strong ><%=@ride.start_location%><br><br>
+<strong>End Location : </strong ><%=@ride.end_location%><br><br>
+</div>
+<%= render 'form', follower: @follower %>
+
+</div>
+</div>
+</section>
+</div>

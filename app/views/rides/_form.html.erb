@@ -1,0 +1,89 @@
+<%= form_with(model: ride, local: true) do |form| %>
+  <% if ride.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ride.errors.count, "error") %> prohibited this ride from being saved:</h2>
+
+      <ul>
+      <% ride.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="inner-holder">
+<label>Start Location</label>
+ <%= form.text_field :start_location, autofocus: true, autocomplete: "start_location", required: true  %>
+</div>
+
+<div class="inner-holder">
+<label>End Location</label>
+ <%= form.text_field :end_location, autofocus: true, autocomplete: "end_location", required: true  %>
+</div>
+
+<div class="booking-inner-holder">
+<label>Ride Date </label>
+<div class="booking-date">
+<div class="inner">
+<input type="text" name="day" placeholder="31">
+<span>Day</span>
+</div>
+<div class="inner">
+<input type="text" name="month" placeholder="10">
+<span>Month</span>
+</div>
+<div class="inner">
+<input type="text" name="year" placeholder="2016">
+<span>Year</span>
+</div>
+<div class="inner inner2">
+<span>at</span>
+</div>
+<div class="inner">
+<select name="hour">
+<option  >20</option>
+<option  >19</option>
+ <option  >18</option>
+<option  >17</option>
+<option  >16</option>
+</select>
+<span>Hours</span>
+</div>
+<div class="inner">
+<select name="minutes">
+<option >10</option>
+<option >11</option>
+<option >12</option>
+<option >13</option>
+<option >14</option>
+</select>
+<span>Minutes</span>
+</div>
+
+
+<div class="inner inner2">
+<i class="fa fa-calendar-check-o"></i>
+</div>
+</div>
+</div>
+<div class="booking-inner-holder">
+<label>No. of Passengers</label>
+<select name="rider_count">
+<option value="1">1 Passenger</option>
+<option value="2">2 Passengers</option>
+<option value="3">3 Passengers</option>
+<option value="4">4 Passengers</option>
+<option value="5">5 Passengers</option>
+<option value="6">6 Passengers</option>
+</select>
+</div>
+<div class="inner-holder">
+<label>Comments</label>
+
+<textarea placeholder="Message" name="comment" required=""></textarea>
+</div>
+  <div class="inner-holder">
+   <%= form.submit "Set Up Ride", class: "submit" %>
+  </div>
+<% end %>
+
+
