@@ -10,6 +10,7 @@ require 'database_cleaner'
 DatabaseCleaner.clean_with :truncation
 
 Role.destroy_all
+
 Role.create(name: :admin)
 Role.create(name: :user)
 
@@ -35,3 +36,4 @@ Ride.create(
   start_location: 'home', end_location: 'ET', is_active: true, rider_count: 5,
   date_ride: DateTime.now, is_completed: false, user_id: user1.id
 )
+
