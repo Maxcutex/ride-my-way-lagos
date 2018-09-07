@@ -1,12 +1,8 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
+
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
          environment:
           RAILS_ENV: test
@@ -19,16 +15,14 @@ jobs:
 
        - image: redis:4.0.6
 
-    working_directory: ~/ride_my_way_lagos #~/repo
+    working_directory: ~/ride_my_way_lagos  
 
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run:
           name: Define Environment Variable at Runtime
@@ -45,12 +39,10 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
         
-      # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run: bundle exec rake db:migrate
 
-      # run tests!
       - run:
           name: run tests
           command: |
@@ -62,7 +54,6 @@ jobs:
                             --format progress \
                             $TEST_FILES
 
-      # collect reports
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:

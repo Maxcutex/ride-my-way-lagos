@@ -39,8 +39,6 @@ class FollowersController < ApplicationController
   end
 
 
-  # PATCH/PUT /followers/1
-  # PATCH/PUT /followers/1.json
   def update
     rider_cannot_follow('update')
     respond_to do |format|
@@ -54,8 +52,6 @@ class FollowersController < ApplicationController
     end
   end
 
-  # DELETE /followers/1
-  # DELETE /followers/1.json
   def destroy
     @follower.destroy
     respond_to do |format|
@@ -67,7 +63,6 @@ class FollowersController < ApplicationController
   def unsubscribe
     
     respond_to do |format|
-      #@follower.will_ride = false
       if @follower.update(will_ride: false)
         format.html { redirect_to ride_path(id: @ride.id), notice: 'You have successfully unsubscribed from this ride.' }
         format.json { render :show, status: :ok, location: ride_path }
@@ -89,7 +84,6 @@ class FollowersController < ApplicationController
   end
 
   def follower_params
-    #params.fetch(:follower, {})
     params.require(:follower).permit(
       :ride_id, :will_ride, :user_id, :pick_up_location, :id
     )

@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   layout :resolve_layout
-  # layout "app_layout", only: [:dashboard]
   def index
   end
 
