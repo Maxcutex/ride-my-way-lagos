@@ -81,6 +81,36 @@ RSpec.describe RidesController, type: :controller do
   end
 
   context 'Non owner for the ride ' do
+    let(:user1) { FactoryBot.create(:user) } 
+    let(:user) { FactoryBot.create(:user) }
+    let!(:ride) { FactoryBot.create(:ride, user: user)}
+    let(:ride2) { FactoryBot.create(:ride, user: user, start_location: 'ET', end_location: 'Yaba')}
+    let(:ride1) { FactoryBot.create(:ride, user: user, start_location: 'VI', end_location: 'ET')}
+    before do
+      sign_in(user1)
+    end
+    describe 'GET #subscribed_rides' do
+      it 'returns a success response' do
+        get :subscribed_rides, params: { user_id: user1.to_param }, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #find ride' do
+      it 'returns a success response' do
+        get :find, params: {}, session: valid_session
+        expect(response).to be_successful
+      end
+
+      it 'with search value returns a success response' do
+        
+        get :search, params: { search_value: 'ET'}, session: valid_session
+        expect(response).to be_successful
+      end
+      
+      
+    end
+
   end
 
   context 'The owner for the ride ' do
@@ -94,6 +124,13 @@ RSpec.describe RidesController, type: :controller do
     describe 'GET #new' do
       it 'returns a success response' do
         get :new, params: {}, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #created_rides' do
+      it 'returns a success response' do
+        get :created_rides, params: {  user_id: user.to_param }, session: valid_session
         expect(response).to be_successful
       end
     end
