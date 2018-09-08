@@ -8,7 +8,7 @@ RSpec.feature "Rides", type: :feature do
   let(:new_ride_form) { NewRideForm.new }
   let(:edit_ride_form) { EditRideForm.new }
   let(:login_form) { LoginForm.new }
-  let(:search_form) { SearchForm.new }
+  let(:search_form) { SearchRideForm.new }
   let(:user) { create(:user) }
   let!(:ride) { create(:ride, start_location: 'Epic Tower', end_location: 'Yaba') }
   let!(:ride1) { create(:ride, start_location: 'Victoria Island, Eko Hotel', end_location: 'Epic Tower') }

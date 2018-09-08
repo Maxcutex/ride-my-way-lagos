@@ -7,9 +7,11 @@ class SearchRideForm
   end
 
   def fill_in_with(search_value)
-    fill_in('search_value', with: search_value)
-
-    select('Both', from: 'option')
+    within '#nifty_form' do
+      fill_in('search_value', with: search_value)
+      select('Both', from: 'option')
+    end
+    
 
     self
   end
