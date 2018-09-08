@@ -18,14 +18,11 @@ class FollowersController < ApplicationController
     @follower = Follower.new
   end
 
-  def edit
+  def edit 
   end
 
   def create
-    
-    rider_cannot_follow
     @follower = Follower.new(follower_params)
-     
     @follower.will_ride = true
     respond_to do |format|
       if @follower.save
@@ -103,10 +100,4 @@ class FollowersController < ApplicationController
     )
   end
 
-  def rider_cannot_follow
-    path = new_ride_follower_path(@ride.id)
-    if current_user.id == @ride.user_id
-      format.html { redirect_to path, notice: 'You cannot subscribe to a ride you created' }
-    end
-  end
 end
