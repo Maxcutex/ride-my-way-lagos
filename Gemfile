@@ -57,6 +57,7 @@ group :development, :test do
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
   gem 'simplecov', require: false
   gem 'coveralls', require: false
+  
 
 end
 
@@ -71,6 +72,7 @@ group :test do
    gem 'capybara'
    gem 'cucumber-rails', require: false
    gem 'rails-controller-testing'
+   gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
