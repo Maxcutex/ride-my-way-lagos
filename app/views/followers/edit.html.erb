@@ -13,9 +13,10 @@
 <strong>Start Location : </strong ><%=@ride.start_location%><br><br>
 <strong>End Location : </strong ><%=@ride.end_location%><br><br>
 </div>
-<%= render 'form', follower: @follower %>
+<%= render 'form', follower: @follower, url: ride_follower_path(ride_id: @ride.id, id: @follower.id) %>
 
 </div>
 </div>
 </section>
+
 </div>
