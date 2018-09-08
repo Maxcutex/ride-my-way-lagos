@@ -40,17 +40,16 @@ class RidesController < ApplicationController
   end 
 
   def create
-    if params[:year].nil?
+    if params['date[year]'].nil?
       date2 = DateTime.now
     else
-      date2 = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i, params[:hour].to_i, params[:minute].to_i, 0)
+      date2 = DateTime.new(params['date[year]'].to_i, params['date[month]'].to_i, params['date[day]'].to_i, params[:hour].to_i, params[:minute].to_i, 0)
     end
     @ride = Ride.new(ride_params)
     @ride.date_ride = date2
     @ride.is_active = true
     @ride.is_completed = false
     @ride.user_id = current_user.id
-    #@ride.rider_count = params[:rider_count]
     respond_to do |format|
       if @ride.save
           
