@@ -1,4 +1,4 @@
-<%= form_with(model: follower, local: true,url: edit_ride_follower_path(id: follower.id, ride_id: @ride.id)) do |form| %>
+<%= form_with(model: follower, local: true,url: "/rides/#{follower.ride_id}/followers/#{follower.id}/remove") do |form| %>
   <% if follower.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(follower.errors.count, "error") %> prohibited this follower from being saved:</h2>
@@ -12,12 +12,19 @@
   <% end %>
 
 <div class="inner-holder">
-  <label>Your Pick Up Location</label>
-   <%= form.text_field :pick_up_location, placeholder: 'Pick Up Location', autofocus: true, autocomplete: "pick_up_location", required: true, value: follower.pick_up_location  %>
-  <br><br><p>Enter your pick up location else leave blank and submit</p>
+  <label>Your comment</label>
+   <%= form.text_field :comment, placeholder: 'Please state why', autofocus: true, autocomplete: "comment", required: true, value: follower.comment  %>
+  <br><br>
  <%= form.hidden_field :ride_id, required: true, value: @ride.id  %>
 
   </div>
+  <div class="inner-holder">
+  <label>Check Below to Unsubsribe</label>
+  
+  <%= form.check_box :will_ride %>
+
+  </div>
+  <p>Tell we would like to know </p>
   <div class="actions">
     <%= form.submit %>
   </div>
