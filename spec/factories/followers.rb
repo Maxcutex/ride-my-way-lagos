@@ -7,4 +7,6 @@ FactoryBot.define do
     association :ride, factory: :ride
     pick_up_location { 'My String' }
   end
+
+  
 end

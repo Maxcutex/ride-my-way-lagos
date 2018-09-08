@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'home/faqs'
   get 'home/contact'
   get 'rides/:ride_id/followers/:id/unsubscribe', to:  'followers#unsubscribe', as: 'unsubscribe'
+  patch 'rides/:ride_id/followers/:id/remove', to:  'followers#remove', as: 'remove'
   get 'rides/:user_id/created', to:  'rides#created_rides', as: 'created_rides'
   get 'rides/:user_id/subscribed', to:  'rides#subscribed_rides', as: 'subscribed_rides'
   get 'rides/:ride_id/complete_ride', to:  'rides#complete', as: 'complete_ride'

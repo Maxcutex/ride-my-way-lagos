@@ -1,6 +1,6 @@
 class FollowersController < ApplicationController
-  before_action :set_follower, only: [:show, :edit, :update, :destroy, :unsubscribe]
-  before_action :set_ride, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_ride, only: [:new, :create]
+  before_action :set_follower, only: [:show, :edit, :update, :destroy, :unsubscribe, :remove]
   before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
 
 
@@ -23,7 +23,7 @@ class FollowersController < ApplicationController
 
   def create
     
-    rider_cannot_follow('create')
+    rider_cannot_follow
     @follower = Follower.new(follower_params)
      
     @follower.will_ride = true
@@ -40,14 +40,30 @@ class FollowersController < ApplicationController
 
 
   def update
-    rider_cannot_follow('update')
     respond_to do |format|
       if @follower.update(follower_params)
-        format.html { redirect_to ride_path(id: @ride.id) , notice: 'You have successfully updated your position on the ride..' }
+        format.html { redirect_to ride_path(id: @ride.id) , notice: 'You have successfully updated your position on the ride.' }
         format.json { render :show, status: :ok, location: ride_path(id: @ride.id) }
       else
         format.html { render :edit }
         format.json { render json: @follower.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove
+    respond_to do |format|
+      if @follower.nil?
+        format.html { redirect_to ride_path(id: @ride.id), notice: 'No record of your subscription could be found.' }
+        format.json { head :no_content }
+      else
+        if @follower.update(follower_params)
+          format.html { redirect_to ride_path(id: @ride.id) , notice: 'You have successfully unsubscribed from the ride.' }
+          format.json { render :show, status: :ok, location: ride_path(id: @ride.id) }
+        else
+          format.html { redirect_to unsubscribe_path(id: @follower.id, ride_id: @ride.id), notice: 'Failure to unsubscribed from the ride.' }
+          format.json { render json: @follower.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -61,22 +77,20 @@ class FollowersController < ApplicationController
   end
 
   def unsubscribe
-    
-    respond_to do |format|
-      if @follower.update(will_ride: false)
-        format.html { redirect_to ride_path(id: @ride.id), notice: 'You have successfully unsubscribed from this ride.' }
-        format.json { render :show, status: :ok, location: ride_path }
-      else
-        format.html { render :edit }
-        format.json { render json: @follower.errors, status: :unprocessable_entity }
+    if @follower.nil?
+      respond_to do |format|
+        byebug
+        format.html { redirect_to ride_path(id: @ride.id), notice: 'No record of your subscription could be found.' }
+        format.json { head :no_content }
       end
     end
-  end 
+  end
 
   private
 
   def set_follower
     @follower = Follower.get_by_id_ride_id(params[:id], params[:ride_id])
+    @ride = Ride.find_by_id(params[:ride_id])
   end
 
   def set_ride
@@ -87,17 +101,10 @@ class FollowersController < ApplicationController
     params.require(:follower).permit(
       :ride_id, :will_ride, :user_id, :pick_up_location, :id
     )
-    
   end
 
-  def rider_cannot_follow(action)
-    
-    if action == 'create'
-      path = new_ride_follower_path(@ride.id)
-    else
-      path = edit_ride_follower_path(@ride.id)
-    end
-    
+  def rider_cannot_follow
+    path = new_ride_follower_path(@ride.id)
     if current_user.id == @ride.user_id
       format.html { redirect_to path, notice: 'You cannot subscribe to a ride you created' }
     end
