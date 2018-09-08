@@ -28,10 +28,10 @@ RSpec.describe FollowersController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Follower. As you add validations to Follower, be sure to
   # adjust the attributes here as well.
-  let(:user) { FactoryBot.create(:user)}
-  let(:user1) { FactoryBot.create(:user)}
-  let(:ride) { FactoryBot.create(:ride, user: user)}
-  let!(:follower) { FactoryBot.create(:follower, ride: ride, user: user1)}
+  let(:user) { create(:user)}
+  let(:user1) { create(:user)}
+  let(:ride) { create(:ride, user: user)}
+  let!(:follower) { create(:follower, ride: ride, user: user1)}
   let(:valid_attributes) {
     FactoryBot.attributes_for_with_foreign_keys(:follower)
   }

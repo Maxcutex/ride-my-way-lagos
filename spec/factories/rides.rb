@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :ride do
     start_location { 'MyString' }
     end_location { 'MyString' }
-    is_active { false }
+    is_active { true }
     rider_count { 1 }
     date_ride { '2018-08-29' }
     is_completed { false }

@@ -24,38 +24,27 @@
 <label>Ride Date </label>
 <div class="booking-date">
 <div class="inner">
-<input type="text" name="day" placeholder="31">
+<%= select_day(Date.today) %>
 <span>Day</span>
 </div>
 <div class="inner">
-<input type="text" name="month" placeholder="10">
+<%= select_month(Date.today) %>
 <span>Month</span>
 </div>
 <div class="inner">
-<input type="text" name="year" placeholder="2016">
+<%= select_year(Date.today, :start_year => Date.today.year, :end_year => 8.years.from_now.year) %>
 <span>Year</span>
 </div>
 <div class="inner inner2">
 <span>at</span>
 </div>
 <div class="inner">
-<select name="hour">
-<option  >20</option>
-<option  >19</option>
- <option  >18</option>
-<option  >17</option>
-<option  >16</option>
-</select>
+<%= form.select :hour, ((0..24).map {|i| [i,i] } << ["No limit",nil]) %>
 <span>Hours</span>
 </div>
 <div class="inner">
-<select name="minutes">
-<option >10</option>
-<option >11</option>
-<option >12</option>
-<option >13</option>
-<option >14</option>
-</select>
+
+<%= form.select :minutes, ((0..59).map {|i| [i,i] } << ["No limit",nil]) %>
 <span>Minutes</span>
 </div>
 
@@ -67,14 +56,7 @@
 </div>
 <div class="booking-inner-holder">
 <label>No. of Passengers</label>
-<select name="rider_count">
-<option value="1">1 Passenger</option>
-<option value="2">2 Passengers</option>
-<option value="3">3 Passengers</option>
-<option value="4">4 Passengers</option>
-<option value="5">5 Passengers</option>
-<option value="6">6 Passengers</option>
-</select>
+<%= form.select :rider_count, options_for_select([['1 Passenger', 1], ['2 Passengers', 2],['3 Passengers', 3],['4 Passengers', 4],['5 Passengers', 5] ]) %>
 </div>
 <div class="inner-holder">
 <label>Comments</label>
