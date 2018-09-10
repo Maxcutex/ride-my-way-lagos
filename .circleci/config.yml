@@ -5,6 +5,7 @@ jobs:
     docker:
        - image: circleci/ruby:2.4.1-node-browsers
          environment:
+          CC_TEST_REPORTER_ID: ABC123
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           DATABASE_URL: "postgres://ubuntu@localhost:5432/circle_test"
@@ -15,7 +16,23 @@ jobs:
 
        - image: redis:4.0.6
 
-    working_directory: ~/ride_my_way_lagos  
+    working_directory: ~/ride_my_way_lagos
+    
+    machine:
+      environment:
+        CC_TEST_REPORTER_ID: ABC123
+
+    dependencies:
+      post:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+
+    test:
+      pre:
+        - ./cc-test-reporter before-build
+      
+      post:
+        - ./cc-test-reporter after-build --exit-code $EXIT_CODE
 
     steps:
       - checkout
