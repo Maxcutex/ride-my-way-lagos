@@ -46,22 +46,7 @@ jobs:
           root: tmp
           paths: 
             - codeclimate.backend.json
-  frontend-tests:
-    <<: *defaults
-    steps:
-      - checkout 
-      - attach_workspace:
-          at: ~/ride_my_way_lagos/tmp
-      - run: npm install
-      - run: 
-          name: Run frontend testss
-          command: |
-            npm test
-            ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/frontend/lcov.info
-      - persist_to_workspace:
-          root: tmp
-          paths: 
-            - codeclimate.frontend.json
+
   upload-coverage:
     <<: *defaults
     environment: 
@@ -89,4 +74,3 @@ workflows:
       - upload-coverage:
           requires:
              - backend-tests
-             - frontend-tests
