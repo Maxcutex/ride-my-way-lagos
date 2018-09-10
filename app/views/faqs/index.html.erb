@@ -1,31 +1,577 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Faqs</h1>
+<section class="cp-faq-section pd-tb80">
+<div class="container">
+<div class="row">
+<div class="col-md-6">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Answer</th>
-      <th>Is active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="cp-faq-holder">
+<h3>ASK A QUESTION?</h3>
 
-  <tbody>
-    <% @faqs.each do |faq| %>
-      <tr>
-        <td><%= faq.title %></td>
-        <td><%= faq.answer %></td>
-        <td><%= faq.is_active %></td>
-        <td><%= link_to 'Show', faq %></td>
-        <td><%= link_to 'Edit', edit_faq_path(faq) %></td>
-        <td><%= link_to 'Destroy', faq, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul class="nav nav-tabs" role="tablist">
+<li class="active"><a href="#ask-tab1" aria-controls="ask-tab1" role="tab" data-toggle="tab">Town Taxi</a></li>
+<li><a href="#ask-tab2" aria-controls="ask-tab2" role="tab" data-toggle="tab">Hybrid Taxi</a></li>
+</ul>
 
-<br>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane fade in active" id="ask-tab1">
 
-<%= link_to 'New Faq', new_faq_path %>
+<div class="cp-ask-tab-inner">
+<p>Find the answer to your query using our Frequently Asked Questions section. Just type your question: </p>
+<form method="get">
+<textarea></textarea>
+<a href="#" class="cp-btn-style2">Search Now</a>
+</form>
+</div>
+</div>
+<div role="tabpanel" class="tab-pane fade in" id="ask-tab2">
+
+<div class="cp-ask-tab-inner">
+<p>Find the answer to your query using our Frequently Asked Questions section. </p>
+<form method="get">
+<textarea></textarea>
+ <a href="#" class="cp-btn-style2">Search Now</a>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+
+<div class="cp-faq-holder">
+<h3>Our Top Rated Question</h3>
+<ul class="cp-listed">
+<li><a href="#">1. How do I book for a ride with Your Taxi?</a></li>
+<li><a href="#">2. What are the different modes of payment you support?</a></li>
+<li><a href="#">3. Which are the locations of operation at the moment?</a></li>
+<li><a href="#">4. Can I book Taxi for someone else using my credit card?</a></li>
+<li><a href="#">5. How do I book for a ride with Your Taxi?</a></li>
+</ul>
+</div>
+</div>
+<div class="col-md-12">
+
+<div class="cp-faq-tabs-holder pd-t80">
+
+<ul class="nav nav-tabs" role="tablist">
+<li class="active"><a href="#faq-tab1" aria-controls="faq-tab1" role="tab" data-toggle="tab">Top Questions</a></li>
+<li><a href="#faq-tab2" aria-controls="faq-tab2" role="tab" data-toggle="tab">Where can you find us</a></li>
+<li><a href="#faq-tab3" aria-controls="faq-tab3" role="tab" data-toggle="tab">Our taxis</a></li>
+<li><a href="#faq-tab4" aria-controls="faq-tab4" role="tab" data-toggle="tab">Lost & found</a></li>
+<li><a href="#faq-tab5" aria-controls="faq-tab5" role="tab" data-toggle="tab">Taxi App</a></li>
+</ul>
+
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane fade in active" id="faq-tab1">
+
+<ul class="cp-faq-listed">
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Nelson </li>
+<li>21 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Niky Bard </li>
+<li>23 Feb ,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by William Doe </li>
+<li>25 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Alle johnfer </li>
+<li>09 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+ 
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style1">Ask Now</a>
+</div>
+</div>
+
+</li>
+</ul>
+</div>
+<div role="tabpanel" class="tab-pane fade in" id="faq-tab2">
+
+<ul class="cp-faq-listed">
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+ <li>by Nelson </li>
+<li>21 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Niky Bard </li>
+<li>23 Feb ,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+ 
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by William Doe </li>
+<li>25 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+</ul>
+</div>
+<div role="tabpanel" class="tab-pane fade in" id="faq-tab3">
+
+<ul class="cp-faq-listed">
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+ <li>by Niky Bard </li>
+<li>23 Feb ,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by William Doe </li>
+<li>25 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Alle johnfer </li>
+<li>09 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+ </div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+</ul>
+</div>
+<div role="tabpanel" class="tab-pane fade in" id="faq-tab4">
+
+<ul class="cp-faq-listed">
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+ <ul class="listed">
+<li>by Nelson </li>
+<li>21 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Niky Bard </li>
+<li>23 Feb ,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+ </div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by William Doe </li>
+<li>25 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Alle johnfer </li>
+<li>09 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+</ul>
+</div>
+<div role="tabpanel" class="tab-pane fade in" id="faq-tab5">
+
+<ul class="cp-faq-listed">
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+ <ul class="listed">
+<li>by Nelson </li>
+<li>21 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by John Doe </li>
+<li>12 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Niky Bard </li>
+<li>23 Feb ,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+ </div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by William Doe </li>
+<li>25 Feb,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+<li>
+
+<div class="cp-faq-box">
+<div class="cp-top">
+<h4>What do your rates include?</h4>
+<ul class="listed">
+<li>by Alle johnfer </li>
+<li>09 march,2016 </li>
+</ul>
+</div>
+<div class="cp-bottom">
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even red alteration in some form, by injected humour, or randomised words which don't look even sligh tly believable. </p>
+<a href="#" class="cp-btn-style2">Ask Now</a>
+</div>
+</div>
+
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="cp-faq-btn-holder pd-t80">
+<strong>Our answers can not help you? Let’s talk with us</strong>
+<a href="contact.html" class="cp-btn-style1">Contact Us</a>
+</div>
+</div>
+</div>
+</div>
+ </section>
