@@ -1,9 +1,13 @@
 class RidesController < ApplicationController
-
+  load_and_authorize_resource
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
   before_action :set_followers, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
 
+  rescue_from CanCan::AccessDenied do
+    redirect_to action: :index
+  end
+  
   def initialize
     super
     @pgheader = 'Ride Management'

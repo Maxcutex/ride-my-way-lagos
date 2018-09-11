@@ -1,15 +1,18 @@
 class FollowersController < ApplicationController
+  load_and_authorize_resource
   before_action :set_ride, only: [:new, :create]
   before_action :set_follower, only: [:show, :edit, :update, :destroy, :unsubscribe, :remove]
   before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
 
+  rescue_from CanCan::AccessDenied do
+    redirect_to rides_path
+  end
 
   def initialize
     super
     @pgheader = 'Ride Management'
     @breadcrumb = 'Ride Mgt'
   end
-
 
   def show
   end
@@ -18,7 +21,7 @@ class FollowersController < ApplicationController
     @follower = Follower.new
   end
 
-  def edit 
+  def edit
   end
 
   def create
