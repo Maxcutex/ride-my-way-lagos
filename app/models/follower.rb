@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 # followers model
@@ -8,7 +7,7 @@ class Follower < ApplicationRecord
 
   scope :active_follower, -> { where(will_ride: true) }
   scope :inactive_follower, -> { where(will_ride: false) }
-  
+
   def self.get_by_id(id)
     where(id: id).first
   end
@@ -21,11 +20,8 @@ class Follower < ApplicationRecord
     where(ride_id: id, will_ride: true)
   end
 
-  
-
   def self.get_by_id_ride_id(id, ride_id)
     where(id: id, ride_id: ride_id).first
   end
   validates :ride_id, :user_id, presence: true
-
 end

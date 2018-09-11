@@ -26,7 +26,10 @@ class FollowersController < ApplicationController
     @follower.will_ride = true
     respond_to do |format|
       if @follower.save
-        format.html { redirect_to ride_path(id: @ride.id), notice: 'You have successfully subscribed to the ride.' }
+        format.html { 
+          redirect_to ride_path(id: @ride.id),
+          notice: 'You have successfully subscribed to the ride.'
+        }
         format.json { render :show, status: :created, location: @ride }
       else
         format.html { redirect_to new_ride_path }
@@ -39,11 +42,18 @@ class FollowersController < ApplicationController
   def update
     respond_to do |format|
       if @follower.update(follower_params)
-        format.html { redirect_to ride_path(id: @ride.id) , notice: 'You have successfully updated your position on the ride.' }
-        format.json { render :show, status: :ok, location: ride_path(id: @ride.id) }
+        format.html {
+          redirect_to ride_path(id: @ride.id),
+            notice: 'You have successfully updated your position on the ride.'
+        }
+        format.json {
+          render :show, status: :ok, location: ride_path(id: @ride.id)
+        }
       else
         format.html { render :edit }
-        format.json { render json: @follower.errors, status: :unprocessable_entity }
+        format.json {
+          render json: @follower.errors, status: :unprocessable_entity
+        }
       end
     end
   end

@@ -6,6 +6,7 @@ class Ability
     if user.user?
       can :manage, Ride, user_id: user.id
       can :manage, Follower, user_id: user.id
+      can :read, Faq, :all
     elsif user.admin?
       can :manage
     else
