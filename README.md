@@ -2,6 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Maxcutex/ride-my-way-lagos/badge.svg?branch=develop)](https://coveralls.io/github/Maxcutex/ride-my-way-lagos?branch=develop)
 [![CircleCI](https://circleci.com/gh/Maxcutex/ride-my-way-lagos.svg?style=svg)](https://circleci.com/gh/Maxcutex/ride-my-way-lagos)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b94c663003f880331b1/maintainability)](https://codeclimate.com/github/Maxcutex/ride-my-way-lagos/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2f782861537bdec6b229/test_coverage)](https://codeclimate.com/github/Maxcutex/microlearningapp/test_coverage)
 
 
 Ride My Way Lagos  is a responsive web application allows you to schedule a ride and the number of followers for your ride.

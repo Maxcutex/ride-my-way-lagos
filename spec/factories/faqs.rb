@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :faq do
     title { "MyString" }
     answer { "MyString" }
-    is_active { false }
+    is_active { true }
   end
 end
