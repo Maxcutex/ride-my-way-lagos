@@ -1,0 +1,35 @@
+
+</section>
+<% if notice %>
+<section class="cp-reservation-section pd-tb80">
+<div class="container">
+<div class="cp-heading-style1">
+<h2> <span></span></h2>
+</div>
+
+<div class="cp-reservation-box cp-login-box">
+<h3>Notification </h3>
+<div class="inner-holder">
+<p id="notice"><%= notice %></p>
+</div>
+</div>
+</div>
+</section>
+<% end %>
+
+<% if alert %>
+<section class="cp-reservation-section pd-tb80">
+<div class="container">
+<div class="cp-heading-style1">
+<h2> <span>Access Denied</span></h2>
+</div>
+
+<div class="cp-reservation-box cp-login-box">
+<h3>Resticted Access </h3>
+<div class="inner-holder">
+<p id="alert"><%= alert %></p>
+</div>
+</div>
+</div>
+</section>
+<% end %>

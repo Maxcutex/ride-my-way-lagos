@@ -1,8 +1,16 @@
 class RidesController < ApplicationController
-
+  load_and_authorize_resource
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
   before_action :set_followers, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
+
+  rescue_from CanCan::AccessDenied do
+    if user_signed_in?
+      redirect_to action: :index
+    else
+      redirect_to new_user_session_url
+    end
+  end
 
   def initialize
     super
@@ -23,6 +31,7 @@ class RidesController < ApplicationController
 
   def new
     @ride = Ride.new
+  
   end
 
   def find

@@ -3,7 +3,7 @@ class Role < ApplicationRecord
   
   
   belongs_to :resource,
-             :polymorphic => true
+             :polymorphic => true, optional: true
   
   
   validates :resource_type,

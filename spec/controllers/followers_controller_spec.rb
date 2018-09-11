@@ -118,16 +118,6 @@ RSpec.describe FollowersController, type: :controller do
           expect(response).to redirect_to(ride_path(id: ride.id))
         end
       end
-
-      context 'an unsubscribed user' do
-        it 'cannot unsubscribe from a ride' do
-          put :remove, params: { 
-            id: 298, ride_id: ride2.id,
-            follower: valid_attributes
-           }, session: valid_session
-          expect(response).to redirect_to(ride_path(id: ride2.id))
-        end
-      end
     end
   end
 end

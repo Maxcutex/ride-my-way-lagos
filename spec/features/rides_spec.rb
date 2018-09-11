@@ -10,12 +10,17 @@ RSpec.feature "Rides", type: :feature do
   let(:login_form) { LoginForm.new }
   let(:search_form) { SearchRideForm.new }
   let(:user) { create(:user) }
-  let!(:ride) { create(:ride, start_location: 'Epic Tower', end_location: 'Yaba') }
+  let!(:user1) { create(:user) }
+  let!(:ride) { 
+    create(
+      :ride, start_location: 'Epic Tower', end_location: 'Yaba', user: user1
+    )
+  }
   let!(:ride1) { create(:ride, start_location: 'Victoria Island, Eko Hotel', end_location: 'Epic Tower') }
 
 
   background do
-    login_form.visit_page.login_as(user)
+    login_form.visit_page.login_as(user1)
   end
   context 'can search for  data' do
     scenario 'that exists' do

@@ -14,7 +14,7 @@ RSpec.feature "Followers", type: :feature do
   let!(:follower) { create(:follower, ride: ride, user: user1)}
 
   background do
-    login_form.visit_page.login_as(user)
+    login_form.visit_page.login_as(user1)
   end
 
   scenario 'subscribe to Ride with valid data' do

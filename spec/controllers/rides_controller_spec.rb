@@ -65,7 +65,7 @@ RSpec.describe RidesController, type: :controller do
         expect(response).to redirect_to new_user_session_url
       end
     end
-  
+
     describe 'POST create' do
       it 'redirects to login page ' do
         post :create, params: { ride: FactoryBot.attributes_for(:ride) }
@@ -103,12 +103,9 @@ RSpec.describe RidesController, type: :controller do
       end
 
       it 'with search value returns a success response' do
-        
         get :search, params: { search_value: 'ET'}, session: valid_session
         expect(response).to be_successful
       end
-      
-      
     end
 
   end
@@ -119,7 +116,7 @@ RSpec.describe RidesController, type: :controller do
     end
 
     let(:user) { create(:user) }
-    let!(:ride) { create(:ride, user: user)}
+    let!(:ride) { create(:ride, user: user) }
 
     describe 'GET #new' do
       it 'returns a success response' do
