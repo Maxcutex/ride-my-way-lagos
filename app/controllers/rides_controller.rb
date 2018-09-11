@@ -5,9 +5,13 @@ class RidesController < ApplicationController
   before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
 
   rescue_from CanCan::AccessDenied do
-    redirect_to action: :index
+    if user_signed_in?
+      redirect_to action: :index
+    else
+      redirect_to new_user_session_url
+    end
   end
-  
+
   def initialize
     super
     @pgheader = 'Ride Management'
@@ -27,6 +31,7 @@ class RidesController < ApplicationController
 
   def new
     @ride = Ride.new
+  
   end
 
   def find

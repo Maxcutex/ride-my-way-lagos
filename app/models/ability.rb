@@ -12,18 +12,35 @@ class Ability
       can :edit, Ride do |ride|
         ride.try(:user) == user
       end
+      can :destroy, Ride do |ride|
+        ride.try(:user) == user
+      end
       can :create, Follower
       can :update, Follower do |follower|
+        follower.try(:user) == user
+      end
+      can :edit, Follower do |follower|
+        follower.try(:user) == user
+      end
+      can :destroy, Follower do |follower|
+        follower.try(:user) == user
+      end
+      can :remove, Follower do |follower|
         follower.try(:user) == user
       end
       can :update, User do |user_model|
         user_model.try(:user) == user
       end
-      cannot :manage , Faq
+      cannot :manage, Faq
+      can :subscribed_rides, Ride
+      can :created_rides, Ride
+      can :search, Ride
+      can :find, Ride
     elsif user.admin?
       can :manage
     else
       can :read, :all
+      can :search, Ride, :all
     end
   end
 end

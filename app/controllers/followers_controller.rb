@@ -3,11 +3,14 @@ class FollowersController < ApplicationController
   before_action :set_ride, only: [:new, :create]
   before_action :set_follower, only: [:show, :edit, :update, :destroy, :unsubscribe, :remove]
   before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
-
+   
   rescue_from CanCan::AccessDenied do
-    redirect_to rides_path
+    if user_signed_in?
+      redirect_to rides_path
+    else
+      redirect_to new_user_session_url
+    end
   end
-
   def initialize
     super
     @pgheader = 'Ride Management'
