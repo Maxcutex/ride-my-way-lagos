@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Ability Class for definiing cancan 
 class Ability
   include CanCan::Ability
 

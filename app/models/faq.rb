@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# faq Model
 class Faq < ApplicationRecord
   validates :title, :answer, presence: true
 

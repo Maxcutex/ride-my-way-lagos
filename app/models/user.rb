@@ -10,7 +10,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   has_many :rides, dependent: :destroy
   has_many :followers
 
@@ -28,8 +27,8 @@ class User < ApplicationRecord
   end
 
   private
+
   def set_default_role
     self.add_role(:user)
   end
-
 end
