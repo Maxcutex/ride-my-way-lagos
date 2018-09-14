@@ -9,20 +9,20 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
 
   has_many :rides, dependent: :destroy
   has_many :followers
 
   scope :active_user, -> { where(is_active: true) }
   scope :inactive_user, -> { where(is_active: false) }
-  
+
   validates_presence_of :first_name, :last_name, :email, :username
 
   def admin?
     has_role?(:admin)
   end
-   
+
   def user?
     has_role?(:user)
   end
@@ -31,4 +31,5 @@ class User < ApplicationRecord
   def set_default_role
     self.add_role(:user)
   end
+
 end

@@ -1,0 +1,38 @@
+<div id="cp-main-content">
+
+<section class="cp-faq-section pd-tb80">
+<div class="container">
+<div class="row">
+<p id="notice"><%= notice %></p>
+
+<h1>Faqs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Answer</th>
+      <th>Is active</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @faqs.each do |faq| %>
+      <tr>
+        <td><%= faq.title %></td>
+        <td><%= faq.answer %></td>
+        <td><%= faq.is_active %></td>
+        <td><%= link_to 'Show', home_faq_show_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Faq', new_faq_path %>
+</div>
+</div>
+</section>
+</div>

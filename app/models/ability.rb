@@ -37,7 +37,8 @@ class Ability
       can :search, Ride
       can :find, Ride
     elsif user.admin?
-      can :manage
+      can :manage, :all
+      can :manage, Faq
     else
       can :read, :all
       can :search, Ride, :all

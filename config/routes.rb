@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   end
   root to: "home#index"
   get 'home/index'
-  get 'home/faqs'
+  get 'home/faqs', to:  'home#faqs', as: 'home_faqs'
+  get 'home/faqs/:id', to:  'home#faq_show', as: 'home_faq_show'
   get 'home/contact'
   get 'rides/:ride_id/followers/:id/unsubscribe', to:  'followers#unsubscribe', as: 'unsubscribe'
   patch 'rides/:ride_id/followers/:id/remove', to:  'followers#remove', as: 'remove'

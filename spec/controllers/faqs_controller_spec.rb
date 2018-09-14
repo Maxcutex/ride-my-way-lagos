@@ -13,8 +13,16 @@ RSpec.describe FaqsController, type: :controller do
     }
   }
   let!(:faq) { create(:faq) }
+  let!(:user1) { create(:user) }
+  let!(:role_admin) { create(:role_admin) }
+  # let!(:user_role_admin) { create(:user_role_admin, role: role_admin, user: user1) }
   let(:valid_session) { {} }
 
+  before do
+    user1.remove_role :user
+    user1.add_role :admin
+    sign_in(user1)
+  end
   describe 'GET #index' do
     it 'returns a success response' do
       get :index, params: {}, session: valid_session

@@ -1,4 +1,5 @@
 class FaqsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
 
   def initialize
@@ -15,6 +16,7 @@ class FaqsController < ApplicationController
   def show
   end
 
+  
   def new
     @faq = Faq.new
   end
@@ -57,7 +59,7 @@ class FaqsController < ApplicationController
   end
 
   private
-  
+
   def set_faq
     @faq = Faq.find(params[:id])
   end
