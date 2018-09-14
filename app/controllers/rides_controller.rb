@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# controller for rides
 class RidesController < ApplicationController
   load_and_authorize_resource
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
@@ -23,22 +26,18 @@ class RidesController < ApplicationController
   end
 
   def search
-    @rides = Ride.search_by(params[:search_value],params[:option])
+    @rides = Ride.search_by(params[:search_value], params[:option])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @ride = Ride.new
-  
   end
 
-  def find
-  end
+  def find; end
 
-  def edit
-  end
+  def edit; end
 
   def created_rides
     @rides = Ride.created_by(params[:user_id])
@@ -46,13 +45,16 @@ class RidesController < ApplicationController
 
   def subscribed_rides
     @rides = Ride.subscribed_by(params[:user_id])
-  end 
+  end
 
   def create
     if params['date[year]'].nil?
       date2 = DateTime.now
     else
-      date2 = DateTime.new(params['date[year]'].to_i, params['date[month]'].to_i, params['date[day]'].to_i, params[:hour].to_i, params[:minute].to_i, 0)
+      date2 = DateTime.new(
+        params['date[year]'].to_i, params['date[month]'].to_i,
+        params['date[day]'].to_i, params[:hour].to_i, params[:minute].to_i, 0
+      )
     end
     @ride = Ride.new(ride_params)
     @ride.date_ride = date2
@@ -61,11 +63,11 @@ class RidesController < ApplicationController
     @ride.user_id = current_user.id
     respond_to do |format|
       if @ride.save
-          
-        format.html { redirect_to @ride, notice: 'Ride was successfully created.' }
+        format.html do
+          redirect_to @ride, notice: 'Ride was successfully created.'
+        end
         format.json { render :show, status: :created, location: @ride }
       else
-         
         format.html { render :new }
         format.json { render json: @ride.errors, status: :unprocessable_entity }
       end
@@ -75,7 +77,9 @@ class RidesController < ApplicationController
   def update
     respond_to do |format|
       if @ride.update(ride_params)
-        format.html { redirect_to @ride, notice: 'Ride was successfully updated.' }
+        format.html do
+          redirect_to @ride, notice: 'Ride was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @ride }
       else
         format.html { render :edit }

@@ -6,8 +6,7 @@ class Ride < ApplicationRecord
   has_many :followers, dependent: :destroy
 
   validates_presence_of :start_location, :end_location, :rider_count, :date_ride, :user_id
-
-
+  
   def self.get_by_id(id)
     where(id: id, is_active: true).first
   end
@@ -30,19 +29,18 @@ class Ride < ApplicationRecord
 
   def self.search_by(search_value, option)
     case option
-    when "start"
+    when 'start'
       where('start_location LIKE  ?', "%#{search_value}%")
-    .where(is_active: true, is_completed: false)
-    .all
-    when "end"
+      .where(is_active: true, is_completed: false)
+      .all
+    when 'end'
       where('end_location LIKE ? ', "%#{search_value}%")
-    .where(is_active: true, is_completed: false)
-    .all
+      .where(is_active: true, is_completed: false)
+      .all
     else
       where('start_location LIKE ? or end_location LIKE ?', "%#{search_value}%", "%#{search_value}%")
-    .where(is_active: true, is_completed: false)
-    .all
+      .where(is_active: true, is_completed: false)
+      .all
     end
-    
   end
 end
