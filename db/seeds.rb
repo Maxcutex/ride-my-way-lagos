@@ -38,3 +38,21 @@ Ride.create(
   start_location: 'home', end_location: 'ET', is_active: true, rider_count: 4,
   date_ride: DateTime.now, is_completed: false, user_id: user2.id
 )
+
+Faq.destroy_all
+
+Faq.create(
+  title: 'Can I Remove a Passenger?',
+  answer: 'Right now, that feature is not available but we are looking to add it soon',
+  is_active: true
+)
+Faq.create(
+  title: 'What is the max waiting time to wait for a passenger?',
+  answer: 'You can leave 5 mins after the scheduled movement time',
+  is_active: true
+)
+Faq.create(
+  title: 'Can I cancel the ride?',
+  answer: 'Yes you can cancel the ride',
+  is_active: true
+)

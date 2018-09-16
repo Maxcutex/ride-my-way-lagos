@@ -5,33 +5,34 @@
 <div class="row">
 <p id="notice"><%= notice %></p>
 
-<h1>Faqs</h1>
-
-<table>
+ <div class="table100 ver3 m-b-110">
+<table class="custom" data-vertable="ver3"  style="width:100%">
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Answer</th>
-      <th>Is active</th>
-      <th ></th>
+    <tr class="row100 head">
+    <th class="column100 column1" data-column="column1">Questions and Answers</th>
+    
     </tr>
   </thead>
 
   <tbody>
     <% @faqs.each do |faq| %>
+      <tr class="row100">
+       <td class="column100 column1" data-column="column1"><h4><%= faq.title %></h4>
+        <br><br>
+
+<%= faq.answer %>        </td>
+      </tr>
       <tr>
-        <td><%= faq.title %></td>
-        <td><%= faq.answer %></td>
-        <td><%= faq.is_active %></td>
-        <td><%= link_to 'Show', home_faq_show_path %></td>
+      <td></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+</div>
 
-<%= link_to 'New Faq', new_faq_path %>
+
 </div>
 </div>
 </section>

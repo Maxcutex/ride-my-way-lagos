@@ -10,8 +10,8 @@
 <div class="cp-reservation-box cp-login-box">
 <h3>Ride Details</h3>
 <div class="inner-holder" style="text-align: left">
-<strong>Start Location : </strong ><%=@ride.start_location%><br><br>
-<strong>End Location : </strong ><%=@ride.end_location%><br><br>
+<strong>Origin: </strong ><%=@ride.start_location%><br><br>
+<strong>Destination : </strong ><%=@ride.end_location%><br><br>
 </div>
 <%= render 'form', follower: @follower, url: ride_follower_path(ride_id: @ride.id, id: @follower.id) %>
 
