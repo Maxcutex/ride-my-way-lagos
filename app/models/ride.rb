@@ -8,7 +8,7 @@ class Ride < ApplicationRecord
   validates_presence_of :start_location, :end_location, :rider_count, :date_ride, :user_id
 
   def self.get_by_id(id)
-    where(id: id, is_active: true).first
+    where(id: id, is_active: true).includes(:followers).first
   end
 
   def self.find_by_id(id)
@@ -16,11 +16,13 @@ class Ride < ApplicationRecord
   end
 
   def self.active_rides
-    where(is_active: true, is_completed: false)
+    where(is_active: true, is_completed: false).includes(:followers).all
   end
 
+
+
   def self.created_by(user_id)
-    where(user_id: user_id, is_active: true)
+    where(user_id: user_id, is_active: true).includes(:followers).all
   end
 
   def self.subscribed_by(user_id)
@@ -28,7 +30,7 @@ class Ride < ApplicationRecord
       user_enroll.ride_id if user_enroll.user_id == user_id
     end
     @user_rides = @subscribed.compact.map do |ride_id|
-      Ride.find_by_id(ride_id)
+      Ride.find_by_id(ride_id).includes(:followers).all
     end
   end
 
@@ -37,15 +39,15 @@ class Ride < ApplicationRecord
     when 'start'
       where('start_location LIKE  ?', "%#{search_value}%")
       .where(is_active: true, is_completed: false)
-      .all
+      .includes(:followers).all
     when 'end'
       where('end_location LIKE ? ', "%#{search_value}%")
       .where(is_active: true, is_completed: false)
-      .all
+      .includes(:followers).all
     else
       where('start_location LIKE ? or end_location LIKE ?', "%#{search_value}%", "%#{search_value}%")
       .where(is_active: true, is_completed: false)
-      .all
+      .includes(:followers).all
     end
   end
 end

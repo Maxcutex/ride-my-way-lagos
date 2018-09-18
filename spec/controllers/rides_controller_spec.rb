@@ -18,7 +18,7 @@ RSpec.describe RidesController, type: :controller do
   let(:valid_session) { {} }
   let!(:ride) { create(:ride) }
 
-  shared_examples 'public access to rides' do
+  shared_examples 'authenticated access to rides' do
     describe 'GET index' do
       it 'renders :index template' do
         get :index
@@ -57,7 +57,6 @@ RSpec.describe RidesController, type: :controller do
 
   describe 'guest user' do
 
-    it_behaves_like 'public access to rides'
 
     describe 'GET new' do
       it 'redirects to login page ' do
@@ -89,6 +88,9 @@ RSpec.describe RidesController, type: :controller do
     before do
       sign_in(user1)
     end
+
+    it_behaves_like 'authenticated access to rides'
+
     describe 'GET #subscribed_rides' do
       it 'returns a success response' do
         get :subscribed_rides, params: { user_id: user1.to_param }, session: valid_session
