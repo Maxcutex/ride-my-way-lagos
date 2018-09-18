@@ -6,14 +6,19 @@ class Ride < ApplicationRecord
   has_many :followers, dependent: :destroy
 
   validates_presence_of :start_location, :end_location, :rider_count, :date_ride, :user_id
-  
+
   def self.get_by_id(id)
     where(id: id, is_active: true).first
   end
+
   def self.find_by_id(id)
     where(id: id).first
   end
-  
+
+  def self.active_rides
+    where(is_active: true, is_completed: false)
+  end
+
   def self.created_by(user_id)
     where(user_id: user_id, is_active: true)
   end

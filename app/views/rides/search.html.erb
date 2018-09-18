@@ -8,6 +8,8 @@
 <div class="cp-faq-holder">
 <h3>RIDES</h3>
 <p id="notice"><%= notice %></p>
+
+<% if @rides.count > 0 %>
  <div class="table100 ver3 m-b-110">
 <table class="custom" data-vertable="ver3"  style="width:100%">
   <thead>
@@ -45,7 +47,9 @@
 </table>
 </div>
 <br>
-
+<% else %>
+<p>No rides found for this search </p>
+<% end %>
 </div>
 </div>
 

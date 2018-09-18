@@ -4,7 +4,10 @@
 class HomeController < ApplicationController
   layout :resolve_layout
   before_action :set_faq, only: [:faq_show]
-  def index; end
+
+  def index
+    @rides = Ride.active_rides
+  end
 
   def faqs
     @faqs = Faq.all
