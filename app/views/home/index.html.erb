@@ -33,7 +33,7 @@
 </div>
 </section>
 <% else %>
-
+ <% if user_signed_in? %>
 
 <section class="cp-faq-section pd-tb80">
 <div class="container">
@@ -88,5 +88,5 @@
 </div>
 </div>
  </section>
-
+<% end %>
 <% end %>
