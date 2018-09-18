@@ -9,7 +9,8 @@
 
 <div class="cp-reservation-box cp-login-box">
 <h3>Please enter Credentials</h3>
- 
+ <p id="notice"><%= notice %></p>
+ <%= devise_error_messages! %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 <div class="inner-holder">

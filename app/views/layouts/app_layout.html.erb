@@ -30,7 +30,7 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/table.js"></script>
 <script src="/js/dataTables.bootstrap.min.js"></script>
-
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
 
@@ -135,7 +135,7 @@
 </div>
 </div>
 </header>
-
+<% unless user_signed_in?  %>
 <div class="cp_banner">
 
 <div class="owl-carousel" id="cp_banner-slider">
@@ -148,7 +148,7 @@
 <div class="banner-inner-holder">
 <strong class="banner-title">Book a Ride</strong>
 <h2>A Fun Way to and from Work</h2>
-<a href="#" class="cp-btn-style1">Search Now</a>
+<a href="/rides/find" class="cp-btn-style1">Search Now</a>
 </div>
 </div>
 </div>
@@ -183,6 +183,24 @@
 </div>
 </div>
 </div>
+<% else %>
+<div class="cp_inner-banner">
+<img src="/images/banner/inner-banner-img-03.jpg" alt="">
+
+<div class="cp-inner-banner-holder">
+<div class="container">
+<h2>Home</h2>
+
+<ul class="breadcrumb">
+<li><a href="/">Home</a></li>
+</ul>
+</div>
+</div>
+<div class="animate-bus">
+<img src="/images/animate-bus2.png" alt="">
+</div>
+</div>
+<% end %>
 
 <div id="cp-main-content">
 <%=yield%>

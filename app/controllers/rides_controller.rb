@@ -3,9 +3,9 @@
 # controller for rides
 class RidesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_ride, only: [:show, :edit, :update, :destroy]
+  before_action :set_ride, only: [:show, :edit, :update, :destroy, :complete_ride]
   before_action :set_followers, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!,  only: [:new, :edit, :update, :create]
+  before_action :authenticate_user! # ,  only: [:new,:index, :edit, :update, :create]
 
   rescue_from CanCan::AccessDenied do
     if user_signed_in?
@@ -22,7 +22,7 @@ class RidesController < ApplicationController
   end
 
   def index
-    @rides = Ride.all
+    @rides = Ride.active_rides
   end
 
   def search
@@ -98,9 +98,8 @@ class RidesController < ApplicationController
 
   def complete_ride
     respond_to do |format|
-      rp = ride_params
-      rp.is_completed = true
-      if @ride.update(rp)
+      
+      if @ride.update(is_completed: true, is_active: false)
         format.html { redirect_to @ride, notice: 'Ride was successfully completed.' }
         format.json { render :show, status: :ok, location: @ride }
       else

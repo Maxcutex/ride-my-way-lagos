@@ -85,10 +85,10 @@
 
     <% end %>
 <% else %>
-<div class="inner-holder">There are no fellow riders on this ride yet!!!</div>
-   <% if @ride.user_id != current_user.id %>
-    <%= link_to "Join Ride", new_ride_follower_path(@ride.id) %>
-   <% end %>
+    <div class="inner-holder">There are no fellow riders on this ride !!!</div>
+       <% if @ride.user_id != current_user.id && (@ride.is_completed==false || @ride.is_active==true) %>
+        <%= link_to "Join Ride", new_ride_follower_path(@ride.id) %>
+       <% end %>
 <% end %>
 </div>
 <div class="col-md-12 col-sm-12">
@@ -96,8 +96,10 @@
 <table>
 <tr>
 <td><div class="inner-holder">
-<% if @ride.user_id == current_user.id %>
+<% if @ride.user_id == current_user.id  && (@ride.is_completed==false || @ride.is_active==true) %>
     <%= link_to "Complete Ride", complete_ride_path(@ride.id),class: "btn-submit"  %> 
+<% else %>
+	<p>This ride is no longer active or is completed !!! </p>
 <% end %>
 </div>	
 </td>
